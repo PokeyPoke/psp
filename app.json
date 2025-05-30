@@ -1,0 +1,52 @@
+{
+  "name": "Political Sentiment Tracker",
+  "description": "A full-stack app for tracking political candidate sentiment across social media and news",
+  "repository": "https://github.com/PokeyPoke/psp",
+  "logo": "https://via.placeholder.com/200x200/3b82f6/FFFFFF?text=PST",
+  "keywords": ["nodejs", "react", "postgresql", "redis", "sentiment-analysis"],
+  "website": "https://github.com/PokeyPoke/psp",
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "npm run migrate"
+  },
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production"
+    },
+    "ADMIN_PASSWORD": {
+      "description": "Password for admin access",
+      "generator": "secret"
+    },
+    "SESSION_SECRET": {
+      "description": "Secret key for session encryption",
+      "generator": "secret"
+    },
+    "NEWS_API_KEY": {
+      "description": "API key from NewsAPI.org (optional)",
+      "required": false
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "hobby"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:hobby-dev"
+    },
+    {
+      "plan": "heroku-redis:hobby-dev"
+    },
+    {
+      "plan": "scheduler:standard"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
