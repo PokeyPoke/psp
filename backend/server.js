@@ -68,12 +68,29 @@ app.use('/api/metrics', metricsRoutes);
 app.use('/api/votes', votesRoutes);
 app.use('/api/admin', adminRoutes);
 
-app.get('/health', (req, res) => {
-  res.status(200).json({ 
-    status: 'healthy', 
-    timestamp: new Date().toISOString(),
-    version: '1.0.0'
-  });
+app.get('/health', async (req, res) => {
+  try {
+    const { getDB } = require('./models/database');
+    const db = getDB();
+    
+    // Test database connection
+    await db.query('SELECT NOW()');
+    
+    res.status(200).json({ 
+      status: 'healthy', 
+      timestamp: new Date().toISOString(),
+      version: '1.0.1',
+      database: 'connected',
+      redis: 'connected'
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      status: 'unhealthy', 
+      timestamp: new Date().toISOString(),
+      version: '1.0.1',
+      error: error.message
+    });
+  }
 });
 
 app.get('*', (req, res) => {
@@ -97,6 +114,17 @@ async function startServer() {
   try {
     await connectDB();
     console.log('✅ Database connected');
+    
+    // Auto-run migrations on startup
+    try {
+      const { createTables, seedData } = require('./migrations/migrate');
+      await createTables();
+      await seedData();
+      console.log('✅ Database migrations completed');
+    } catch (migrationError) {
+      console.warn('⚠️  Migration warning:', migrationError.message);
+      // Continue anyway - tables might already exist
+    }
     
     await connectRedis();
     console.log('✅ Redis connected');

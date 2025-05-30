@@ -16,7 +16,12 @@ router.get('/', async (req, res) => {
     res.json(candidates);
   } catch (error) {
     console.error('Error fetching candidates:', error);
-    res.status(500).json({ error: 'Failed to fetch candidates' });
+    console.error('Error stack:', error.stack);
+    res.status(500).json({ 
+      error: 'Failed to fetch candidates',
+      details: error.message,
+      timestamp: new Date().toISOString()
+    });
   }
 });
 
