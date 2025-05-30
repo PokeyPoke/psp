@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAdmin } from '../../contexts/AdminContext';
-import { FiMenu, FiX, FiBarChart3, FiTrendingUp, FiUsers, FiSettings, FiLogOut } from 'react-icons/fi';
+import { FiMenu, FiX, FiBarChart2, FiTrendingUp, FiUsers, FiSettings, FiLogOut } from 'react-icons/fi';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,7 +20,7 @@ const Header = () => {
   };
 
   const navItems = [
-    { path: '/', label: 'Home', icon: FiBarChart3 },
+    { path: '/', label: 'Home', icon: FiBarChart2 },
     { path: '/leaderboard', label: 'Leaderboard', icon: FiTrendingUp },
   ];
 
@@ -31,7 +31,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="bg-gradient-to-r from-primary-600 to-accent-600 text-white p-2 rounded-lg">
-              <FiBarChart3 className="h-6 w-6" />
+              <FiBarChart2 className="h-6 w-6" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-gray-900">

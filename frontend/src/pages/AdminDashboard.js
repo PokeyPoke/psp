@@ -9,7 +9,7 @@ import {
   FiEdit, 
   FiTrash2, 
   FiUsers, 
-  FiBarChart3, 
+  FiBarChart2, 
   FiTrendingUp,
   FiSave,
   FiX,
@@ -210,7 +210,7 @@ const AdminDashboard = () => {
                 </p>
               </div>
               <div className="bg-success-100 p-3 rounded-lg">
-                <FiBarChart3 className="h-6 w-6 text-success-600" />
+                <FiBarChart2 className="h-6 w-6 text-success-600" />
               </div>
             </div>
           </div>

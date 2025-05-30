@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FiBarChart3, FiHeart, FiGithub, FiMail } from 'react-icons/fi';
+import { FiBarChart2, FiHeart, FiGithub, FiMail } from 'react-icons/fi';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -13,7 +13,7 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <div className="bg-gradient-to-r from-primary-600 to-accent-600 text-white p-2 rounded-lg">
-                <FiBarChart3 className="h-6 w-6" />
+                <FiBarChart2 className="h-6 w-6" />
               </div>
               <div>
                 <h3 className="text-lg font-bold text-gray-900">
