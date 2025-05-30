@@ -14,6 +14,14 @@ const createTables = async () => {
   try {
     await client.query('BEGIN');
     
+    // Drop existing problematic indexes/triggers first
+    try {
+      await client.query('DROP INDEX IF EXISTS idx_votes_session');
+      await client.query('DROP TRIGGER IF EXISTS update_candidates_updated_at ON candidates');
+    } catch (e) {
+      // Ignore errors here
+    }
+    
     await client.query(`
       CREATE TABLE IF NOT EXISTS candidates (
         id SERIAL PRIMARY KEY,
@@ -63,6 +71,7 @@ const createTables = async () => {
       )
     `);
 
+    // Create indexes safely
     await client.query(`
       CREATE INDEX IF NOT EXISTS idx_metrics_candidate_date 
       ON metrics(candidate_id, date DESC)
@@ -73,10 +82,18 @@ const createTables = async () => {
       ON votes(candidate_id)
     `);
 
-    await client.query(`
-      CREATE INDEX IF NOT EXISTS idx_votes_session 
-      ON votes(session_id)
+    // Only create session index if session_id column exists
+    const sessionColumnCheck = await client.query(`
+      SELECT column_name FROM information_schema.columns 
+      WHERE table_name = 'votes' AND column_name = 'session_id'
     `);
+    
+    if (sessionColumnCheck.rows.length > 0) {
+      await client.query(`
+        CREATE INDEX IF NOT EXISTS idx_votes_session 
+        ON votes(session_id)
+      `);
+    }
 
     await client.query(`
       CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -86,10 +103,6 @@ const createTables = async () => {
         RETURN NEW;
       END;
       $$ language 'plpgsql'
-    `);
-
-    await client.query(`
-      DROP TRIGGER IF EXISTS update_candidates_updated_at ON candidates
     `);
 
     await client.query(`
