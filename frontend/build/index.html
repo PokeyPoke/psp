@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Political Sentiment Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-600 via-purple-600 to-purple-800 min-h-screen">
+    <div id="app" class="container mx-auto px-4 py-8">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white mb-2">📊 Political Sentiment Tracker</h1>
+            <p class="text-blue-100">Real-time sentiment analysis across social media and news</p>
+        </header>
+
+        <div id="loading" class="text-center text-white">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-white mb-4"></div>
+            <p>Loading candidates...</p>
+        </div>
+
+        <div id="content" class="hidden">
+            <div id="candidates" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"></div>
+            
+            <div class="bg-white/10 backdrop-blur-lg rounded-lg p-6">
+                <h2 class="text-2xl font-bold text-white mb-4">Vote for Your Candidate</h2>
+                <p class="text-blue-100">Click on any candidate card above to vote!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple frontend JavaScript
+        let candidates = [];
+        
+        async function loadCandidates() {
+            try {
+                const response = await fetch('/api/candidates');
+                candidates = await response.json();
+                renderCandidates();
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('content').classList.remove('hidden');
+            } catch (error) {
+                console.error('Error loading candidates:', error);
+                setTimeout(loadCandidates, 2000);
+            }
+        }
+
+        function renderCandidates() {
+            const container = document.getElementById('candidates');
+            container.innerHTML = candidates.map(candidate => `
+                <div class="bg-white/10 backdrop-blur-lg rounded-lg p-6 text-white hover:bg-white/20 transition-all cursor-pointer" 
+                     onclick="voteForCandidate(${candidate.id})">
+                    <div class="flex items-center mb-4">
+                        <img src="${candidate.photo_url}" alt="${candidate.name}" class="w-16 h-16 rounded-full mr-4">
+                        <div>
+                            <h3 class="text-xl font-bold">${candidate.name}</h3>
+                            <p class="text-blue-200">${candidate.party}</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-blue-100 mb-4">${candidate.bio}</p>
+                    
+                    ${candidate.latest_metrics ? `
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div class="bg-black/20 rounded p-2">
+                            <div class="font-semibold">Reddit</div>
+                            <div>${candidate.latest_metrics.reddit_mentions || 0} mentions</div>
+                        </div>
+                        <div class="bg-black/20 rounded p-2">
+                            <div class="font-semibold">News</div>
+                            <div>${candidate.latest_metrics.news_mentions || 0} mentions</div>
+                        </div>
+                        <div class="bg-black/20 rounded p-2">
+                            <div class="font-semibold">Trends</div>
+                            <div>${candidate.latest_metrics.google_trends_score || 0}/100</div>
+                        </div>
+                        <div class="bg-black/20 rounded p-2">
+                            <div class="font-semibold">Votes</div>
+                            <div>${candidate.vote_count || 0}</div>
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    <div class="mt-4 text-center">
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded font-semibold">
+                            Vote for ${candidate.name}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function voteForCandidate(candidateId) {
+            try {
+                const sessionId = 'user-' + Date.now();
+                const response = await fetch(`/api/votes/${candidateId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        session_id: sessionId,
+                        ip_address: '127.0.0.1',
+                        user_agent: navigator.userAgent
+                    })
+                });
+                
+                if (response.ok) {
+                    alert('Vote recorded successfully!');
+                    loadCandidates(); // Refresh to show updated vote count
+                } else {
+                    alert('Error recording vote. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error voting:', error);
+                alert('Error recording vote. Please try again.');
+            }
+        }
+
+        // Load candidates when page loads
+        loadCandidates();
+    </script>
+</body>
+</html>
