@@ -1,6 +1,5 @@
 // Political Sentiment Tracker - Updated Homepage with Sidebar Design
 const { useState, useEffect } = React;
-const { BrowserRouter, Routes, Route, Link } = ReactRouterDOM;
 
 // HomePage Component with your requested design changes
 function HomePage() {
@@ -367,15 +366,5 @@ function HomePage() {
   );
 }
 
-// App Component
-function App() {
-  return React.createElement(BrowserRouter, {},
-    React.createElement(Routes, {},
-      React.createElement(Route, { path: '/', element: React.createElement(HomePage) }),
-      React.createElement(Route, { path: '*', element: React.createElement(HomePage) })
-    )
-  );
-}
-
-// Render the app
-ReactDOM.render(React.createElement(App), document.getElementById('root'));
+// Render the app directly
+ReactDOM.render(React.createElement(HomePage), document.getElementById('root'));
