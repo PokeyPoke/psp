@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style 7: Brutalist Web Design - PoliticalStage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap');
+        
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #000;
+            color: #fff;
+        }
+        
+        .brutal-box {
+            border: 4px solid #fff;
+            background: #000;
+            box-shadow: 8px 8px 0px #fff;
+        }
+        
+        .brutal-red {
+            background: #ff0000;
+            color: #000;
+            border: 4px solid #000;
+            box-shadow: 8px 8px 0px #000;
+        }
+        
+        .brutal-blue {
+            background: #0000ff;
+            color: #fff;
+            border: 4px solid #fff;
+            box-shadow: 8px 8px 0px #fff;
+        }
+        
+        .brutal-yellow {
+            background: #ffff00;
+            color: #000;
+            border: 4px solid #000;
+            box-shadow: 8px 8px 0px #000;
+        }
+        
+        .brutal-button {
+            background: #fff;
+            color: #000;
+            border: 4px solid #000;
+            box-shadow: 4px 4px 0px #000;
+            transform: none;
+            transition: none;
+        }
+        
+        .brutal-button:hover {
+            background: #000;
+            color: #fff;
+            border: 4px solid #fff;
+            box-shadow: 4px 4px 0px #fff;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Brutal Header -->
+    <header class="border-b-4 border-white p-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center">
+                <h1 class="text-8xl font-black tracking-wider mb-4">
+                    POLITICAL
+                </h1>
+                <h1 class="text-8xl font-black tracking-wider brutal-red p-4 inline-block">
+                    STAGE
+                </h1>
+                <p class="text-2xl font-bold mt-8 tracking-wider">
+                    >>> UNFILTERED POLITICAL DATA <<<
+                </p>
+                
+                <!-- Brutal Stats Blocks -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mt-12">
+                    <div class="brutal-box p-6">
+                        <div class="text-4xl font-black">847K</div>
+                        <div class="text-lg font-bold mt-2">VOTES</div>
+                    </div>
+                    <div class="brutal-red p-6">
+                        <div class="text-4xl font-black">LIVE</div>
+                        <div class="text-lg font-bold mt-2">DATA</div>
+                    </div>
+                    <div class="brutal-blue p-6">
+                        <div class="text-4xl font-black">+127%</div>
+                        <div class="text-lg font-bold mt-2">GROWTH</div>
+                    </div>
+                    <div class="brutal-yellow p-6">
+                        <div class="text-4xl font-black">24/7</div>
+                        <div class="text-lg font-bold mt-2">ACTIVE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Brutal Content -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-8">
+            <!-- Top 3 Brutal Blocks -->
+            <div class="mb-16">
+                <h2 class="text-6xl font-black text-center mb-12 tracking-wider">
+                    RANKING
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <!-- #1 Biden -->
+                    <div class="brutal-blue p-8">
+                        <div class="text-center">
+                            <div class="text-8xl font-black mb-4">#1</div>
+                            <h3 class="text-3xl font-black mb-4 tracking-wider">JOE BIDEN</h3>
+                            <p class="text-xl font-bold mb-6">[DEMOCRAT]</p>
+                            <div class="grid grid-cols-1 gap-4">
+                                <div class="bg-white text-black p-4 border-4 border-black">
+                                    <div class="text-3xl font-black">847K</div>
+                                    <div class="text-lg font-bold">VOTES</div>
+                                </div>
+                                <div class="bg-black text-white p-4 border-4 border-white">
+                                    <div class="text-3xl font-black">+0.32</div>
+                                    <div class="text-lg font-bold">SENTIMENT</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- #2 Trump -->
+                    <div class="brutal-red p-8">
+                        <div class="text-center">
+                            <div class="text-8xl font-black mb-4">#2</div>
+                            <h3 class="text-3xl font-black mb-4 tracking-wider">DONALD TRUMP</h3>
+                            <p class="text-xl font-bold mb-6">[REPUBLICAN]</p>
+                            <div class="grid grid-cols-1 gap-4">
+                                <div class="bg-white text-black p-4 border-4 border-black">
+                                    <div class="text-3xl font-black">743K</div>
+                                    <div class="text-lg font-bold">VOTES</div>
+                                </div>
+                                <div class="bg-black text-white p-4 border-4 border-white">
+                                    <div class="text-3xl font-black">-0.18</div>
+                                    <div class="text-lg font-bold">SENTIMENT</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- #3 DeSantis -->
+                    <div class="brutal-yellow p-8">
+                        <div class="text-center">
+                            <div class="text-8xl font-black mb-4">#3</div>
+                            <h3 class="text-3xl font-black mb-4 tracking-wider">RON DESANTIS</h3>
+                            <p class="text-xl font-bold mb-6">[REPUBLICAN]</p>
+                            <div class="grid grid-cols-1 gap-4">
+                                <div class="bg-white text-black p-4 border-4 border-black">
+                                    <div class="text-3xl font-black">432K</div>
+                                    <div class="text-lg font-bold">VOTES</div>
+                                </div>
+                                <div class="bg-black text-white p-4 border-4 border-white">
+                                    <div class="text-3xl font-black">+0.24</div>
+                                    <div class="text-lg font-bold">SENTIMENT</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <!-- Main Content -->
+                <div class="lg:col-span-3">
+                    <h2 class="text-4xl font-black mb-8 tracking-wider">ALL CANDIDATES</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        <div class="brutal-box p-6">
+                            <div class="text-center">
+                                <div class="text-4xl font-black mb-2">#4</div>
+                                <h3 class="text-xl font-black mb-2 tracking-wider">NIKKI HALEY</h3>
+                                <p class="text-sm font-bold mb-4">[REPUBLICAN]</p>
+                                <div class="space-y-2">
+                                    <div class="text-lg font-black">284K VOTES</div>
+                                    <div class="text-lg font-black">+0.18 SENTIMENT</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="brutal-box p-6">
+                            <div class="text-center">
+                                <div class="text-4xl font-black mb-2">#5</div>
+                                <h3 class="text-xl font-black mb-2 tracking-wider">KAMALA HARRIS</h3>
+                                <p class="text-sm font-bold mb-4">[DEMOCRAT]</p>
+                                <div class="space-y-2">
+                                    <div class="text-lg font-black">267K VOTES</div>
+                                    <div class="text-lg font-black">+0.05 SENTIMENT</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brutal Sidebar -->
+                <div class="lg:col-span-1">
+                    <div class="brutal-box p-6">
+                        <h3 class="text-2xl font-black mb-6 tracking-wider">DATA</h3>
+                        <div class="space-y-6">
+                            <div class="border-4 border-white p-4">
+                                <h4 class="text-lg font-black mb-3">REGIONS</h4>
+                                <div class="space-y-2 text-sm font-bold">
+                                    <div class="flex justify-between">
+                                        <span>TEXAS:</span>
+                                        <span>TRUMP</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>CALIFORNIA:</span>
+                                        <span>BIDEN</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>NEW YORK:</span>
+                                        <span>BIDEN</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border-4 border-white p-4">
+                                <h4 class="text-lg font-black mb-3">METRICS</h4>
+                                <div class="space-y-2 text-sm font-bold">
+                                    <div>VOTE RATE: +347/MIN</div>
+                                    <div>ACTIVE: 18.2K</div>
+                                    <div>UPDATES: 23</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

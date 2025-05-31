@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style 8: Art Deco Elegance - PoliticalStage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+        
+        .art-deco-bg {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            position: relative;
+        }
+        
+        .art-deco-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255,215,0,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255,215,0,0.05) 0%, transparent 50%);
+        }
+        
+        .deco-border {
+            border: 3px solid #ffd700;
+            background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0.05) 100%);
+        }
+        
+        .deco-corners {
+            position: relative;
+        }
+        
+        .deco-corners::before,
+        .deco-corners::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffd700;
+        }
+        
+        .deco-corners::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .deco-corners::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        .gold-text { color: #ffd700; }
+        .silver-text { color: #c0c0c0; }
+        .bronze-text { color: #cd7f32; }
+        
+        .deco-font { font-family: 'Cinzel', serif; }
+        .serif-font { font-family: 'Cormorant Garamond', serif; }
+    </style>
+</head>
+<body class="art-deco-bg text-white serif-font min-h-screen">
+    <!-- Art Deco Header -->
+    <header class="art-deco-pattern border-b-4 border-yellow-400">
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="text-center">
+                <div class="mb-8">
+                    <div class="inline-block deco-border p-8 deco-corners">
+                        <h1 class="text-6xl font-bold deco-font gold-text mb-4 tracking-widest">
+                            POLITICAL
+                        </h1>
+                        <h1 class="text-6xl font-bold deco-font silver-text tracking-widest">
+                            STAGE
+                        </h1>
+                    </div>
+                </div>
+                <p class="text-2xl font-semibold silver-text tracking-wide serif-font italic">
+                    "The Gentleman's Guide to Political Analytics"
+                </p>
+                <div class="text-sm gold-text mt-4 tracking-wider">EST. MMXXIV</div>
+                
+                <!-- Elegant Stats Display -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mt-12">
+                    <div class="deco-border p-6 deco-corners">
+                        <div class="text-3xl font-bold gold-text deco-font">847K</div>
+                        <div class="text-sm silver-text tracking-wider">DISTINGUISHED VOTES</div>
+                    </div>
+                    <div class="deco-border p-6 deco-corners">
+                        <div class="text-3xl font-bold gold-text deco-font">LIVE</div>
+                        <div class="text-sm silver-text tracking-wider">CONTINUOUS SERVICE</div>
+                    </div>
+                    <div class="deco-border p-6 deco-corners">
+                        <div class="text-3xl font-bold gold-text deco-font">127%</div>
+                        <div class="text-sm silver-text tracking-wider">REFINED GROWTH</div>
+                    </div>
+                    <div class="deco-border p-6 deco-corners">
+                        <div class="text-3xl font-bold gold-text deco-font">24/7</div>
+                        <div class="text-sm silver-text tracking-wider">BUTLER SERVICE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Art Deco Content -->
+    <section class="py-16 art-deco-pattern">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Distinguished Top 3 -->
+            <div class="mb-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-5xl font-bold deco-font gold-text mb-4 tracking-wider">
+                        THE DISTINGUISHED SOCIETY
+                    </h2>
+                    <div class="w-32 h-1 bg-gradient-to-r from-transparent via-yellow-400 to-transparent mx-auto"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- #1 Biden - Gold -->
+                    <div class="deco-border p-8 deco-corners relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400"></div>
+                        <div class="text-center">
+                            <div class="w-24 h-24 border-4 border-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center bg-gradient-to-br from-yellow-400 to-yellow-600 text-black">
+                                <span class="text-3xl font-bold deco-font">I</span>
+                            </div>
+                            <h3 class="text-3xl font-bold mb-2 gold-text deco-font tracking-wide">JOSEPH R. BIDEN</h3>
+                            <p class="text-blue-300 mb-6 italic serif-font">Democratic Statesman</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="border-2 border-yellow-400 p-4 bg-yellow-400 bg-opacity-10">
+                                    <div class="text-2xl font-bold gold-text deco-font">847K</div>
+                                    <div class="text-xs silver-text tracking-wider">ENDORSEMENTS</div>
+                                </div>
+                                <div class="border-2 border-green-400 p-4 bg-green-400 bg-opacity-10">
+                                    <div class="text-2xl font-bold text-green-400 deco-font">+0.32</div>
+                                    <div class="text-xs silver-text tracking-wider">APPROVAL</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- #2 Trump - Silver -->
+                    <div class="deco-border p-8 deco-corners relative overflow-hidden" style="border-color: #c0c0c0;">
+                        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-gray-400 via-gray-300 to-gray-400"></div>
+                        <div class="text-center">
+                            <div class="w-24 h-24 border-4 border-gray-400 rounded-full mx-auto mb-6 flex items-center justify-center bg-gradient-to-br from-gray-400 to-gray-600 text-black">
+                                <span class="text-3xl font-bold deco-font">II</span>
+                            </div>
+                            <h3 class="text-3xl font-bold mb-2 silver-text deco-font tracking-wide">DONALD J. TRUMP</h3>
+                            <p class="text-red-300 mb-6 italic serif-font">Republican Magnate</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="border-2 border-gray-400 p-4 bg-gray-400 bg-opacity-10">
+                                    <div class="text-2xl font-bold silver-text deco-font">743K</div>
+                                    <div class="text-xs text-gray-300 tracking-wider">ENDORSEMENTS</div>
+                                </div>
+                                <div class="border-2 border-red-400 p-4 bg-red-400 bg-opacity-10">
+                                    <div class="text-2xl font-bold text-red-400 deco-font">-0.18</div>
+                                    <div class="text-xs text-gray-300 tracking-wider">APPROVAL</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- #3 DeSantis - Bronze -->
+                    <div class="deco-border p-8 deco-corners relative overflow-hidden" style="border-color: #cd7f32;">
+                        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-400 via-yellow-600 to-orange-400"></div>
+                        <div class="text-center">
+                            <div class="w-24 h-24 border-4 border-orange-500 rounded-full mx-auto mb-6 flex items-center justify-center bg-gradient-to-br from-orange-500 to-orange-700 text-white">
+                                <span class="text-3xl font-bold deco-font">III</span>
+                            </div>
+                            <h3 class="text-3xl font-bold mb-2 bronze-text deco-font tracking-wide">RONALD D. DESANTIS</h3>
+                            <p class="text-purple-300 mb-6 italic serif-font">Florida Governor</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="border-2 border-orange-500 p-4 bg-orange-500 bg-opacity-10">
+                                    <div class="text-2xl font-bold bronze-text deco-font">432K</div>
+                                    <div class="text-xs text-orange-300 tracking-wider">ENDORSEMENTS</div>
+                                </div>
+                                <div class="border-2 border-green-400 p-4 bg-green-400 bg-opacity-10">
+                                    <div class="text-2xl font-bold text-green-400 deco-font">+0.24</div>
+                                    <div class="text-xs text-orange-300 tracking-wider">APPROVAL</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Layout -->
+            <div class="lg:grid lg:grid-cols-4 lg:gap-8">
+                <!-- Candidate Gallery -->
+                <div class="lg:col-span-3">
+                    <h2 class="text-3xl font-bold mb-8 gold-text deco-font tracking-wider">THE COMPLETE SOCIETY ROSTER</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        <div class="border-2 border-yellow-400 p-6 bg-yellow-400 bg-opacity-5 deco-corners">
+                            <div class="text-center">
+                                <div class="w-16 h-16 border-2 border-yellow-400 rounded-full mx-auto mb-4 flex items-center justify-center bg-yellow-400 bg-opacity-20">
+                                    <span class="text-lg font-bold gold-text deco-font">IV</span>
+                                </div>
+                                <h3 class="text-lg font-bold gold-text deco-font mb-2">NIKKI R. HALEY</h3>
+                                <p class="text-sm text-red-300 italic serif-font mb-4">Republican Diplomat</p>
+                                <div class="space-y-2 text-sm">
+                                    <div class="gold-text font-semibold deco-font">284K Endorsements</div>
+                                    <div class="text-green-400 font-semibold deco-font">+0.18 Approval</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exclusive Club Information -->
+                <div class="lg:col-span-1 mt-8 lg:mt-0">
+                    <div class="deco-border p-6 deco-corners">
+                        <h3 class="text-xl font-bold mb-6 gold-text deco-font tracking-wider">CLUB INTELLIGENCE</h3>
+                        <div class="space-y-6">
+                            <div class="border-2 border-yellow-400 p-4 bg-yellow-400 bg-opacity-5">
+                                <h4 class="font-semibold gold-text deco-font mb-3">Regional Chapters</h4>
+                                <div class="text-sm space-y-2 serif-font">
+                                    <div class="flex justify-between">
+                                        <span class="silver-text">Texas Chapter:</span>
+                                        <span class="gold-text font-semibold">Trump</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="silver-text">California Chapter:</span>
+                                        <span class="gold-text font-semibold">Biden</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="silver-text">New York Chapter:</span>
+                                        <span class="gold-text font-semibold">Biden</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border-2 border-yellow-400 p-4 bg-yellow-400 bg-opacity-5">
+                                <h4 class="font-semibold gold-text deco-font mb-3">Live Metrics</h4>
+                                <div class="text-xs space-y-2 serif-font">
+                                    <div class="flex justify-between">
+                                        <span class="silver-text">Engagement Rate:</span>
+                                        <span class="gold-text">+347/min</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="silver-text">Active Members:</span>
+                                        <span class="gold-text">18.2K</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="silver-text">Daily Updates:</span>
+                                        <span class="gold-text">1,247</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

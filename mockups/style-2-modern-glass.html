@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style 2: Modern Glass Morphism - PoliticalStage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .glass-bg { 
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .glass-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+    </style>
+</head>
+<body class="hero-gradient min-h-screen">
+    <!-- Glass Header -->
+    <header class="glass-bg text-white">
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <div class="text-center">
+                <h1 class="text-5xl font-bold mb-4 text-white drop-shadow-lg">
+                    Political<span class="text-pink-300">Stage</span>
+                </h1>
+                <p class="text-xl text-white/80">Transparent Political Analytics</p>
+                
+                <!-- Floating Glass Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-10">
+                    <div class="glass-card rounded-xl p-4">
+                        <div class="text-2xl font-bold text-white">847K</div>
+                        <div class="text-sm text-white/70">Total Votes</div>
+                    </div>
+                    <div class="glass-card rounded-xl p-4">
+                        <div class="text-2xl font-bold text-white">Live</div>
+                        <div class="text-sm text-white/70">Real-time</div>
+                    </div>
+                    <div class="glass-card rounded-xl p-4">
+                        <div class="text-2xl font-bold text-white">+127%</div>
+                        <div class="text-sm text-white/70">Growth</div>
+                    </div>
+                    <div class="glass-card rounded-xl p-4">
+                        <div class="text-2xl font-bold text-white">24/7</div>
+                        <div class="text-sm text-white/70">Tracking</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Top 3 - Glass Cards -->
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-center mb-8 text-white drop-shadow-lg">Leading Candidates</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    <!-- #1 Biden -->
+                    <div class="glass-card rounded-2xl p-6 text-white">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold shadow-lg">1</div>
+                            <h3 class="text-2xl font-bold mb-2">Joe Biden</h3>
+                            <p class="text-blue-200 mb-4">Democratic Party</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="glass-bg rounded-lg p-3">
+                                    <div class="text-xl font-bold">847K</div>
+                                    <div class="text-sm text-white/70">Votes</div>
+                                </div>
+                                <div class="glass-bg rounded-lg p-3">
+                                    <div class="text-xl font-bold text-green-300">+0.32</div>
+                                    <div class="text-sm text-white/70">Sentiment</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- #2 Trump -->
+                    <div class="glass-card rounded-2xl p-6 text-white">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-gradient-to-br from-red-400 to-red-600 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold shadow-lg">2</div>
+                            <h3 class="text-2xl font-bold mb-2">Donald Trump</h3>
+                            <p class="text-red-200 mb-4">Republican Party</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="glass-bg rounded-lg p-3">
+                                    <div class="text-xl font-bold">743K</div>
+                                    <div class="text-sm text-white/70">Votes</div>
+                                </div>
+                                <div class="glass-bg rounded-lg p-3">
+                                    <div class="text-xl font-bold text-red-300">-0.18</div>
+                                    <div class="text-sm text-white/70">Sentiment</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- #3 DeSantis -->
+                    <div class="glass-card rounded-2xl p-6 text-white">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold shadow-lg">3</div>
+                            <h3 class="text-2xl font-bold mb-2">Ron DeSantis</h3>
+                            <p class="text-purple-200 mb-4">Republican Party</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="glass-bg rounded-lg p-3">
+                                    <div class="text-xl font-bold">432K</div>
+                                    <div class="text-sm text-white/70">Votes</div>
+                                </div>
+                                <div class="glass-bg rounded-lg p-3">
+                                    <div class="text-xl font-bold text-green-300">+0.24</div>
+                                    <div class="text-sm text-white/70">Sentiment</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content with Sidebar -->
+            <div class="lg:grid lg:grid-cols-4 lg:gap-8">
+                <!-- Main Grid -->
+                <div class="lg:col-span-3">
+                    <h2 class="text-2xl font-bold mb-6 text-white">All Candidates</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                        <div class="glass-card rounded-xl p-4 text-white">
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-white/20 rounded-full mx-auto mb-3 flex items-center justify-center font-bold">#4</div>
+                                <h3 class="font-bold">Nikki Haley</h3>
+                                <p class="text-sm text-red-200">Republican</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Glass Sidebar -->
+                <div class="lg:col-span-1 mt-8 lg:mt-0">
+                    <div class="glass-card rounded-xl p-6 text-white">
+                        <h3 class="text-lg font-bold mb-4">Live Analytics</h3>
+                        <div class="space-y-4">
+                            <div class="glass-bg rounded-lg p-3">
+                                <h4 class="font-semibold mb-2">Trending Now</h4>
+                                <div class="text-sm space-y-1">
+                                    <div>📈 Biden +2.3%</div>
+                                    <div>🔥 DeSantis surge</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

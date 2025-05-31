@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style 10: Terminal/CLI Interface - PoliticalStage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #0d1117;
+            color: #58a6ff;
+        }
+        
+        .terminal-window {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+        }
+        
+        .terminal-header {
+            background: #21262d;
+            border-bottom: 1px solid #30363d;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            border-radius: 6px 6px 0 0;
+        }
+        
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27ca3f; }
+        
+        .prompt { color: #7c3aed; }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+        .warning { color: #ffc107; }
+        .info { color: #17a2b8; }
+        
+        .cursor {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .ascii-art {
+            color: #58a6ff;
+            font-size: 12px;
+            line-height: 1.2;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-blue-400 p-4">
+    <!-- Terminal Window -->
+    <div class="terminal-window max-w-7xl mx-auto">
+        <!-- Terminal Header -->
+        <div class="terminal-header">
+            <div class="terminal-dot dot-red"></div>
+            <div class="terminal-dot dot-yellow"></div>
+            <div class="terminal-dot dot-green"></div>
+            <span class="text-gray-400 text-sm ml-4">political-stage-tracker v2.1.4</span>
+        </div>
+        
+        <!-- Terminal Content -->
+        <div class="p-6">
+            <!-- ASCII Art Header -->
+            <pre class="ascii-art mb-6">
+██████╗  ██████╗ ██╗     ██╗████████╗██╗ ██████╗ █████╗ ██╗     
+██╔══██╗██╔═══██╗██║     ██║╚══██╔══╝██║██╔════╝██╔══██╗██║     
+██████╔╝██║   ██║██║     ██║   ██║   ██║██║     ███████║██║     
+██╔═══╝ ██║   ██║██║     ██║   ██║   ██║██║     ██╔══██║██║     
+██║     ╚██████╔╝███████╗██║   ██║   ██║╚██████╗██║  ██║███████╗
+╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═╝   ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝
+███████╗████████╗ █████╗  ██████╗ ███████╗                      
+██╔════╝╚══██╔══╝██╔══██╗██╔════╝ ██╔════╝                      
+███████╗   ██║   ███████║██║  ███╗█████╗                        
+╚════██║   ██║   ██╔══██║██║   ██║██╔══╝                        
+███████║   ██║   ██║  ██║╚██████╔╝███████╗                      
+╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝                      
+            </pre>
+
+            <!-- System Info -->
+            <div class="mb-6">
+                <div class="text-gray-400">$ system --info</div>
+                <div class="text-green-400 mb-2">✓ Connected to political-stage-tracker</div>
+                <div class="text-gray-300">
+                    <div>Version: 2.1.4</div>
+                    <div>Uptime: 24d 18h 42m</div>
+                    <div>Total Votes: 847,293</div>
+                    <div>Active Connections: 18,247</div>
+                    <div>Last Update: 2024-01-13 15:42:37 UTC</div>
+                </div>
+            </div>
+
+            <!-- Top 3 Candidates -->
+            <div class="mb-8">
+                <div class="text-gray-400 mb-2">$ candidates --top 3 --format table</div>
+                <div class="success mb-2">✓ Fetching top candidates...</div>
+                <pre class="text-gray-300">
+┌──────┬──────────────────┬─────────────┬─────────────┬─────────────┬─────────────┐
+│ RANK │ NAME             │ PARTY       │ VOTES       │ SENTIMENT   │ CHANGE_24H  │
+├──────┼──────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+│ <span class="text-yellow-400">#1</span>   │ <span class="text-blue-400">Joe Biden</span>        │ <span class="text-blue-400">DEMOCRAT</span>    │ <span class="text-green-400">847,293</span>     │ <span class="text-green-400">+0.32</span>       │ <span class="text-green-400">+47.2K</span>      │
+│ <span class="text-gray-400">#2</span>   │ <span class="text-red-400">Donald Trump</span>     │ <span class="text-red-400">REPUBLICAN</span>  │ <span class="text-yellow-400">743,187</span>     │ <span class="text-red-400">-0.18</span>       │ <span class="text-yellow-400">+12.8K</span>      │
+│ <span class="text-orange-400">#3</span>   │ <span class="text-purple-400">Ron DeSantis</span>     │ <span class="text-red-400">REPUBLICAN</span>  │ <span class="text-blue-400">432,156</span>     │ <span class="text-green-400">+0.24</span>       │ <span class="text-green-400">+89.3K</span>      │
+└──────┴──────────────────┴─────────────┴─────────────┴─────────────┴─────────────┘
+                </pre>
+                <div class="text-gray-400 text-sm mt-2">Execution time: 0.142s</div>
+            </div>
+
+            <!-- Live Metrics -->
+            <div class="mb-8">
+                <div class="text-gray-400 mb-2">$ metrics --live --interval 30s</div>
+                <div class="success mb-2">✓ Streaming live metrics...</div>
+                <div class="bg-gray-800 border border-gray-600 rounded p-4">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <div class="text-gray-400 text-sm mb-2">VOTE VELOCITY</div>
+                            <div class="text-green-400 text-xl">+347 votes/min</div>
+                            <div class="text-gray-500 text-xs">↑ 12% from last hour</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm mb-2">ACTIVE DISCUSSIONS</div>
+                            <div class="text-blue-400 text-xl">18,247</div>
+                            <div class="text-gray-500 text-xs">↑ 8% from last hour</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm mb-2">SENTIMENT CHANGES</div>
+                            <div class="text-yellow-400 text-xl">23 updates</div>
+                            <div class="text-gray-500 text-xs">Last 15 minutes</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-400 text-sm mb-2">SERVER LOAD</div>
+                            <div class="text-green-400 text-xl">0.67</div>
+                            <div class="text-gray-500 text-xs">Optimal performance</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Candidates List -->
+            <div class="mb-8">
+                <div class="text-gray-400 mb-2">$ candidates --all --sort votes --desc</div>
+                <div class="success mb-2">✓ Loading candidate database...</div>
+                <div class="grid lg:grid-cols-4 gap-4">
+                    <div class="lg:col-span-3">
+                        <pre class="text-gray-300 text-sm">
+┌──────┬─────────────────┬─────────────┬─────────────┬─────────────┐
+│ RANK │ CANDIDATE       │ PARTY       │ VOTES       │ SENTIMENT   │
+├──────┼─────────────────┼─────────────┼─────────────┼─────────────┤
+│ <span class="text-yellow-400">#4</span>   │ <span class="text-red-400">Nikki Haley</span>     │ <span class="text-red-400">REPUBLICAN</span>  │ <span class="text-blue-400">284,192</span>     │ <span class="text-green-400">+0.18</span>       │
+│ <span class="text-yellow-400">#5</span>   │ <span class="text-blue-400">Kamala Harris</span>   │ <span class="text-blue-400">DEMOCRAT</span>    │ <span class="text-blue-400">267,845</span>     │ <span class="text-green-400">+0.05</span>       │
+│ <span class="text-yellow-400">#6</span>   │ <span class="text-red-400">Vivek Ramaswamy</span> │ <span class="text-red-400">REPUBLICAN</span>  │ <span class="text-blue-400">156,234</span>     │ <span class="text-green-400">+0.28</span>       │
+│ <span class="text-yellow-400">#7</span>   │ <span class="text-red-400">Chris Christie</span>  │ <span class="text-red-400">REPUBLICAN</span>  │ <span class="text-blue-400">98,567</span>      │ <span class="text-red-400">-0.12</span>       │
+│ <span class="text-yellow-400">#8</span>   │ <span class="text-red-400">Tim Scott</span>       │ <span class="text-red-400">REPUBLICAN</span>  │ <span class="text-blue-400">87,234</span>      │ <span class="text-green-400">+0.15</span>       │
+└──────┴─────────────────┴─────────────┴─────────────┴─────────────┘
+                        </pre>
+                    </div>
+                    
+                    <!-- Regional Data Panel -->
+                    <div class="bg-gray-800 border border-gray-600 rounded p-4">
+                        <div class="text-green-400 font-bold mb-3">REGIONAL STATUS</div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">TEXAS:</span>
+                                <span class="text-red-400">TRUMP</span>
+                            </div>
+                            <div class="text-gray-500 text-xs">8.9K votes (↑ 2.3%)</div>
+                            
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">CALIFORNIA:</span>
+                                <span class="text-blue-400">BIDEN</span>
+                            </div>
+                            <div class="text-gray-500 text-xs">12.3K votes (↑ 1.8%)</div>
+                            
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">NEW YORK:</span>
+                                <span class="text-blue-400">BIDEN</span>
+                            </div>
+                            <div class="text-gray-500 text-xs">8.7K votes (↑ 0.9%)</div>
+                        </div>
+                        
+                        <div class="mt-6 pt-4 border-t border-gray-600">
+                            <div class="text-yellow-400 font-bold mb-3">TRENDING</div>
+                            <div class="space-y-2 text-xs">
+                                <div class="text-green-400">↗ DeSantis momentum</div>
+                                <div class="text-blue-400">→ Biden steady</div>
+                                <div class="text-red-400">↘ Trump declining</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Command Prompt -->
+            <div class="mb-4">
+                <div class="flex items-center">
+                    <span class="text-green-400">user@political-stage</span>
+                    <span class="text-gray-400">:</span>
+                    <span class="text-blue-400">~/tracker</span>
+                    <span class="text-gray-400">$ </span>
+                    <span class="cursor text-white">█</span>
+                </div>
+            </div>
+
+            <!-- Available Commands -->
+            <div class="text-gray-500 text-sm">
+                <div class="mb-2">Available commands:</div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>• candidates --top N</div>
+                    <div>• metrics --live</div>
+                    <div>• regions --status</div>
+                    <div>• trends --analysis</div>
+                    <div>• vote --candidate ID</div>
+                    <div>• help --commands</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
