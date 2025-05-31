@@ -13,7 +13,7 @@
     "server": "cd backend && npm run dev",
     "client": "cd frontend && npm start",
     "build": "cd frontend && npm run build",
-    "heroku-postbuild": "cd backend && npm install && cd .. && rm -rf backend/public && cp -r frontend/build backend/public",
+    "heroku-postbuild": "cd frontend && npm install && npm run build && cd ../backend && npm install && cd .. && rm -rf backend/public && cp -r frontend/build backend/public",
     "install-deps": "cd backend && npm install && cd ../frontend && npm install",
     "migrate": "cd backend && npm run migrate",
     "setup-db": "cd backend && npm run setup-db",
