@@ -177,9 +177,9 @@ function HomePage() {
         // Main Content Area
         React.createElement('div', { className: 'lg:col-span-3' },
           // Top 3 Candidates - Highlighted Above Main Grid
-          sortedCandidates.length > 0 && React.createElement('div', { className: 'mb-16' },
-            React.createElement('h2', { className: 'text-4xl font-bold text-center mb-12 text-gray-900' }, '🏆 Leading the Stage'),
-            React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto' },
+          sortedCandidates.length > 0 && React.createElement('div', { className: 'mb-10' },
+            React.createElement('h2', { className: 'text-2xl font-bold text-center mb-6 text-gray-900' }, '🏆 Leading the Stage'),
+            React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto' },
               sortedCandidates.slice(0, 3).map((candidate, index) => {
                 const gradientClass = index === 0 ? 'from-blue-500 to-blue-700' :
                                     index === 1 ? 'from-red-500 to-red-700' :
@@ -193,7 +193,7 @@ function HomePage() {
                 
                 return React.createElement('div', {
                   key: candidate.id,
-                  className: 'relative bg-gradient-to-br rounded-2xl p-8 text-white transform hover:scale-105 transition-transform duration-200 ' + gradientClass,
+                  className: 'relative bg-gradient-to-br rounded-xl p-4 text-white transform hover:scale-105 transition-transform duration-200 ' + gradientClass,
                   style: {
                     background: 'linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,193,7,0.1) 100%), ' + 
                                (index === 0 ? 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' :
@@ -204,7 +204,7 @@ function HomePage() {
                   }
                 },
                   React.createElement('div', {
-                    className: 'absolute -top-4 left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl ' + badgeClass,
+                    className: 'absolute -top-3 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg ' + badgeClass,
                     style: index === 0 ? { 
                       background: 'linear-gradient(45deg, #ffd700, #ffed4a)',
                       animation: 'shine 2s infinite alternate',
@@ -220,29 +220,29 @@ function HomePage() {
                     }
                   }, '🚀'),
                   React.createElement('div', { className: 'text-center' },
-                    React.createElement('div', { className: 'w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white bg-gray-300 flex items-center justify-center text-2xl font-bold text-gray-600' },
+                    React.createElement('div', { className: 'w-20 h-20 rounded-full mx-auto mb-3 border-3 border-white bg-gray-300 flex items-center justify-center text-lg font-bold text-gray-600' },
                       candidate.name.split(' ').map(n => n[0]).join('').toUpperCase()
                     ),
-                    React.createElement('h3', { className: 'text-3xl font-bold mb-2' }, candidate.name),
-                    React.createElement('p', { className: 'mb-4 ' + textColorClass },
+                    React.createElement('h3', { className: 'text-xl font-bold mb-1' }, candidate.name),
+                    React.createElement('p', { className: 'mb-3 text-sm ' + textColorClass },
                       candidate.party + ' • #' + (index + 1) + ' Overall'
                     ),
-                    React.createElement('div', { className: 'grid grid-cols-2 gap-4 mb-6' },
-                      React.createElement('div', { className: 'bg-white bg-opacity-20 rounded-lg p-3' },
-                        React.createElement('div', { className: 'text-2xl font-bold' },
+                    React.createElement('div', { className: 'grid grid-cols-2 gap-2 mb-4' },
+                      React.createElement('div', { className: 'bg-white bg-opacity-20 rounded-lg p-2' },
+                        React.createElement('div', { className: 'text-lg font-bold' },
                           (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].vote_count || 0).toLocaleString()
                         ),
-                        React.createElement('div', { className: 'text-sm ' + textColorClass }, 'Votes')
+                        React.createElement('div', { className: 'text-xs ' + textColorClass }, 'Votes')
                       ),
-                      React.createElement('div', { className: 'bg-white bg-opacity-20 rounded-lg p-3' },
-                        React.createElement('div', { className: 'text-2xl font-bold' },
+                      React.createElement('div', { className: 'bg-white bg-opacity-20 rounded-lg p-2' },
+                        React.createElement('div', { className: 'text-lg font-bold' },
                           (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].reddit_sentiment > 0 ? '+' : '') +
                           (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].reddit_sentiment || 0).toFixed(2)
                         ),
-                        React.createElement('div', { className: 'text-sm ' + textColorClass }, 'Sentiment')
+                        React.createElement('div', { className: 'text-xs ' + textColorClass }, 'Sentiment')
                       )
                     ),
-                    React.createElement('button', { className: 'w-full bg-white text-gray-900 font-bold py-3 rounded-lg hover:bg-gray-100 transition-colors' },
+                    React.createElement('button', { className: 'w-full bg-white text-gray-900 font-bold py-2 rounded-lg hover:bg-gray-100 transition-colors text-sm' },
                       'View Full Profile'
                     )
                   )
