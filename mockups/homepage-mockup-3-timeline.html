@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Political Stage - Timeline View</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .stage-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%); }
+        .timeline-item { position: relative; }
+        .timeline-line { 
+            position: absolute; 
+            left: 50%; 
+            top: 0; 
+            bottom: 0; 
+            width: 4px; 
+            background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #ef4444);
+            transform: translateX(-50%);
+        }
+        .timeline-point {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+        .candidate-avatar-large { 
+            width: 100px; 
+            height: 100px; 
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .trend-up { color: #10b981; }
+        .trend-down { color: #ef4444; }
+        .trend-neutral { color: #6b7280; }
+        .historical-chart { height: 300px; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header with Timeline Navigation -->
+    <header class="stage-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <div class="text-center">
+                <h1 class="text-5xl font-bold mb-4">Political<span class="text-yellow-300">Stage</span></h1>
+                <p class="text-xl text-blue-200 mb-8">The Political Journey Unfolds</p>
+                
+                <!-- Timeline Navigation -->
+                <div class="flex justify-center space-x-6 mb-8">
+                    <button class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-lg hover:bg-opacity-30 transition-all">
+                        📅 Last 7 Days
+                    </button>
+                    <button class="bg-white bg-opacity-30 backdrop-blur-sm px-6 py-3 rounded-lg border-2 border-yellow-300">
+                        📊 Last 30 Days
+                    </button>
+                    <button class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-lg hover:bg-opacity-30 transition-all">
+                        📈 Last 90 Days
+                    </button>
+                    <button class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-3 rounded-lg hover:bg-opacity-30 transition-all">
+                        🗓️ All Time
+                    </button>
+                </div>
+
+                <!-- Live Stats Ticker -->
+                <div class="bg-black bg-opacity-30 rounded-lg p-4 max-w-4xl mx-auto">
+                    <div class="flex justify-between items-center text-sm">
+                        <span>🔴 LIVE: Political activity increased 32% in last hour</span>
+                        <span>📊 Biden +2.3% • Trump -1.7% • DeSantis +4.8%</span>
+                        <span>⏰ Updated: 2 mins ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Current Leaders Strip -->
+    <section class="py-8 bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-2xl font-bold text-center mb-6 text-gray-900">🏆 Current Stage Leaders</h2>
+            <div class="flex justify-center items-center space-x-8">
+                <!-- #1 -->
+                <div class="text-center">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/100x100/ffffff/cccccc?text=JB" alt="Joe Biden" class="candidate-avatar-large rounded-full mx-auto">
+                        <div class="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black text-sm font-bold px-3 py-1 rounded-full">
+                            #1
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg mt-3">Joe Biden</h3>
+                    <p class="text-blue-600 text-sm">Democratic Party</p>
+                    <div class="flex items-center justify-center mt-2">
+                        <span class="text-2xl font-bold text-gray-900">847K</span>
+                        <span class="text-green-600 text-sm ml-2">↗ +15%</span>
+                    </div>
+                </div>
+
+                <!-- #2 -->
+                <div class="text-center">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/100x100/ffffff/cccccc?text=DT" alt="Donald Trump" class="candidate-avatar-large rounded-full mx-auto">
+                        <div class="absolute -top-2 -right-2 bg-gray-400 text-white text-sm font-bold px-3 py-1 rounded-full">
+                            #2
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg mt-3">Donald Trump</h3>
+                    <p class="text-red-600 text-sm">Republican Party</p>
+                    <div class="flex items-center justify-center mt-2">
+                        <span class="text-2xl font-bold text-gray-900">743K</span>
+                        <span class="text-red-600 text-sm ml-2">↘ -5%</span>
+                    </div>
+                </div>
+
+                <!-- #3 -->
+                <div class="text-center">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/100x100/ffffff/cccccc?text=RD" alt="Ron DeSantis" class="candidate-avatar-large rounded-full mx-auto">
+                        <div class="absolute -top-2 -right-2 bg-orange-500 text-white text-sm font-bold px-3 py-1 rounded-full">
+                            #3
+                        </div>
+                        <div class="absolute -bottom-2 -left-2 bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                            🔥 Rising
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg mt-3">Ron DeSantis</h3>
+                    <p class="text-red-600 text-sm">Republican Party</p>
+                    <div class="flex items-center justify-center mt-2">
+                        <span class="text-2xl font-bold text-gray-900">432K</span>
+                        <span class="text-green-600 text-sm ml-2">🚀 +47%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historical Timeline -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">
+                📈 30-Day Political Journey
+            </h2>
+
+            <!-- Interactive Historical Chart -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-12">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold">Vote Count Progression</h3>
+                    <div class="flex space-x-2">
+                        <button class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Votes</button>
+                        <button class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm hover:bg-purple-100">Sentiment</button>
+                        <button class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm hover:bg-green-100">Mentions</button>
+                    </div>
+                </div>
+                
+                <!-- Mock Chart Area -->
+                <div class="historical-chart bg-gray-50 rounded-lg p-4 relative">
+                    <div class="flex justify-between items-end h-full">
+                        <!-- Biden Line (Blue) -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-3 h-32 bg-blue-500 rounded-t mb-2"></div>
+                            <span class="text-xs text-gray-600">Day 1</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-3 h-36 bg-blue-500 rounded-t mb-2"></div>
+                            <span class="text-xs text-gray-600">Day 5</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-3 h-28 bg-blue-500 rounded-t mb-2"></div>
+                            <span class="text-xs text-gray-600">Day 10</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-3 h-24 bg-blue-500 rounded-t mb-2"></div>
+                            <span class="text-xs text-gray-600">Day 15</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-3 h-40 bg-blue-500 rounded-t mb-2"></div>
+                            <span class="text-xs text-gray-600">Day 20</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-3 h-52 bg-blue-500 rounded-t mb-2"></div>
+                            <span class="text-xs text-gray-600">Day 25</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-3 h-60 bg-blue-500 rounded-t mb-2 shadow-lg"></div>
+                            <span class="text-xs text-gray-600 font-bold">Today</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Chart Legend -->
+                    <div class="absolute top-4 right-4 bg-white p-3 rounded-lg shadow-md">
+                        <div class="flex items-center space-x-4 text-sm">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-blue-500 rounded mr-2"></div>
+                                <span>Biden</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-red-500 rounded mr-2"></div>
+                                <span>Trump</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-purple-500 rounded mr-2"></div>
+                                <span>DeSantis</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Events -->
+            <div class="relative">
+                <div class="timeline-line"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-16">
+                    <!-- Event 1: 30 Days Ago -->
+                    <div class="timeline-item grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="timeline-point bg-red-500 w-6 h-6 rounded-full border-4 border-white"></div>
+                        
+                        <div class="bg-white rounded-lg shadow-lg p-6 mr-0 md:mr-8">
+                            <div class="flex items-center mb-4">
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">30 Days Ago</span>
+                                <span class="ml-4 text-gray-600 text-sm">March 1, 2024</span>
+                            </div>
+                            <h3 class="text-lg font-bold mb-2 text-gray-900">Trump Dominance Era</h3>
+                            <p class="text-gray-700 mb-4">Donald Trump maintained a commanding 15% lead over all competitors, with strong sentiment scores across conservative media.</p>
+                            
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="text-center">
+                                    <img src="https://via.placeholder.com/48x48/ffffff/cccccc?text=DT" alt="Donald Trump" class="w-12 h-12 rounded-full mx-auto mb-2">
+                                    <div class="text-sm font-bold">743K</div>
+                                    <div class="text-xs text-red-600">#1 Position</div>
+                                </div>
+                                <div class="text-center">
+                                    <img src="https://via.placeholder.com/48x48/ffffff/cccccc?text=JB" alt="Joe Biden" class="w-12 h-12 rounded-full mx-auto mb-2">
+                                    <div class="text-sm font-bold">628K</div>
+                                    <div class="text-xs text-blue-600">#2 Position</div>
+                                </div>
+                                <div class="text-center">
+                                    <img src="https://via.placeholder.com/48x48/ffffff/cccccc?text=RD" alt="Ron DeSantis" class="w-12 h-12 rounded-full mx-auto mb-2">
+                                    <div class="text-sm font-bold">385K</div>
+                                    <div class="text-xs text-purple-600">#3 Position</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6 ml-0 md:ml-8">
+                            <h4 class="font-bold mb-3 text-red-800">Key Metrics Then</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Reddit Sentiment:</span>
+                                    <span class="font-medium text-red-600">-0.23 (Negative)</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>News Coverage:</span>
+                                    <span class="font-medium">47.2K mentions</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Google Trends:</span>
+                                    <span class="font-medium">Peak: 89/100</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Vote Velocity:</span>
+                                    <span class="font-medium text-red-600">+2.1K/hour</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 2: 15 Days Ago -->
+                    <div class="timeline-item grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="timeline-point bg-yellow-500 w-6 h-6 rounded-full border-4 border-white"></div>
+                        
+                        <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-6 mr-0 md:mr-8 order-2 md:order-1">
+                            <h4 class="font-bold mb-3 text-yellow-800">Market Shift Signals</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Biden Momentum:</span>
+                                    <span class="font-medium text-green-600">+8.3% week growth</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>DeSantis Buzz:</span>
+                                    <span class="font-medium text-purple-600">+12.7% mentions</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Trump Plateau:</span>
+                                    <span class="font-medium text-gray-600">Flat growth</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Overall Activity:</span>
+                                    <span class="font-medium">+23% increase</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-lg p-6 ml-0 md:ml-8 order-1 md:order-2">
+                            <div class="flex items-center mb-4">
+                                <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">15 Days Ago</span>
+                                <span class="ml-4 text-gray-600 text-sm">March 16, 2024</span>
+                            </div>
+                            <h3 class="text-lg font-bold mb-2 text-gray-900">The Momentum Shift</h3>
+                            <p class="text-gray-700 mb-4">Early indicators showed Biden gaining traction while DeSantis emerged as a dark horse candidate. Trump's growth began to plateau.</p>
+                            
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="text-center">
+                                    <img src="https://via.placeholder.com/48x48/ffffff/cccccc?text=DT" alt="Donald Trump" class="w-12 h-12 rounded-full mx-auto mb-2">
+                                    <div class="text-sm font-bold">751K</div>
+                                    <div class="text-xs text-red-600">Still #1</div>
+                                </div>
+                                <div class="text-center">
+                                    <img src="https://via.placeholder.com/48x48/ffffff/cccccc?text=JB" alt="Joe Biden" class="w-12 h-12 rounded-full mx-auto mb-2">
+                                    <div class="text-sm font-bold">695K</div>
+                                    <div class="text-xs text-blue-600">🔥 Climbing</div>
+                                </div>
+                                <div class="text-center">
+                                    <img src="https://via.placeholder.com/48x48/ffffff/cccccc?text=RD" alt="Ron DeSantis" class="w-12 h-12 rounded-full mx-auto mb-2">
+                                    <div class="text-sm font-bold">401K</div>
+                                    <div class="text-xs text-purple-600">⚡ Surging</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 3: 7 Days Ago -->
+                    <div class="timeline-item grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="timeline-point bg-blue-500 w-6 h-6 rounded-full border-4 border-white"></div>
+                        
+                        <div class="bg-white rounded-lg shadow-lg p-6 mr-0 md:mr-8">
+                            <div class="flex items-center mb-4">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">7 Days Ago</span>
+                                <span class="ml-4 text-gray-600 text-sm">March 24, 2024</span>
+                            </div>
+                            <h3 class="text-lg font-bold mb-2 text-gray-900">Biden Surge Begins</h3>
+                            <p class="text-gray-700 mb-4">A dramatic uptick in positive sentiment and social media engagement propelled Biden into serious contention, closing the gap significantly.</p>
+                            
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="text-center">
+                                    <img src="https://via.placeholder.com/48x48/ffffff/cccccc?text=JB" alt="Joe Biden" class="w-12 h-12 rounded-full mx-auto mb-2 ring-4 ring-blue-300">
+                                    <div class="text-sm font-bold">782K</div>
+                                    <div class="text-xs text-blue-600">🚀 Surging</div>
+                                </div>
+                                <div class="text-center">
+                                    <img src="https://via.placeholder.com/48x48/ffffff/cccccc?text=DT" alt="Donald Trump" class="w-12 h-12 rounded-full mx-auto mb-2">
+                                    <div class="text-sm font-bold">759K</div>
+                                    <div class="text-xs text-red-600">📉 Slowing</div>
+                                </div>
+                                <div class="text-center">
+                                    <img src="https://via.placeholder.com/48x48/ffffff/cccccc?text=RD" alt="Ron DeSantis" class="w-12 h-12 rounded-full mx-auto mb-2">
+                                    <div class="text-sm font-bold">424K</div>
+                                    <div class="text-xs text-purple-600">📈 Growing</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 ml-0 md:ml-8">
+                            <h4 class="font-bold mb-3 text-blue-800">Surge Factors</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Sentiment Flip:</span>
+                                    <span class="font-medium text-green-600">-0.12 → +0.31</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Social Velocity:</span>
+                                    <span class="font-medium text-blue-600">+47% mentions</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Vote Rate:</span>
+                                    <span class="font-medium text-green-600">+5.7K/hour</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>News Tone:</span>
+                                    <span class="font-medium text-blue-600">73% positive</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 4: Today -->
+                    <div class="timeline-item grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="timeline-point bg-green-500 w-8 h-8 rounded-full border-4 border-white animate-pulse"></div>
+                        
+                        <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 mr-0 md:mr-8 order-2 md:order-1">
+                            <h4 class="font-bold mb-3 text-green-800">Live Metrics</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Biden Leading:</span>
+                                    <span class="font-medium text-green-600">+104K votes</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>DeSantis Rising:</span>
+                                    <span class="font-medium text-purple-600">+47 rank positions</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Activity Level:</span>
+                                    <span class="font-medium text-orange-600">🔥 Very High</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Next Update:</span>
+                                    <span class="font-medium">2 mins</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-xl p-6 ml-0 md:ml-8 order-1 md:order-2 border-2 border-green-200">
+                            <div class="flex items-center mb-4">
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Today</span>
+                                <span class="ml-4 text-gray-600 text-sm">March 31, 2024</span>
+                                <div class="ml-auto flex items-center">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                                    <span class="text-green-600 text-sm font-medium">LIVE</span>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-bold mb-2 text-gray-900">Biden Takes the Lead</h3>
+                            <p class="text-gray-700 mb-4">In a historic reversal, Joe Biden has overtaken Donald Trump for the first time in this tracking period, while Ron DeSantis continues his remarkable climb.</p>
+                            
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="text-center">
+                                    <div class="relative">
+                                        <img src="https://via.placeholder.com/48x48/ffffff/cccccc?text=JB" alt="Joe Biden" class="w-12 h-12 rounded-full mx-auto mb-2 ring-4 ring-green-400">
+                                        <div class="absolute -top-1 -right-1 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black text-xs font-bold px-1 py-0.5 rounded-full">👑</div>
+                                    </div>
+                                    <div class="text-sm font-bold">847K</div>
+                                    <div class="text-xs text-green-600">🏆 New #1</div>
+                                </div>
+                                <div class="text-center">
+                                    <img src="https://via.placeholder.com/48x48/ffffff/cccccc?text=DT" alt="Donald Trump" class="w-12 h-12 rounded-full mx-auto mb-2 ring-2 ring-gray-300">
+                                    <div class="text-sm font-bold">743K</div>
+                                    <div class="text-xs text-red-600">📉 Now #2</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="relative">
+                                        <img src="https://via.placeholder.com/48x48/ffffff/cccccc?text=RD" alt="Ron DeSantis" class="w-12 h-12 rounded-full mx-auto mb-2 ring-4 ring-purple-400">
+                                        <div class="absolute -bottom-1 -right-1 bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs font-bold px-1 py-0.5 rounded-full">🔥</div>
+                                    </div>
+                                    <div class="text-sm font-bold">432K</div>
+                                    <div class="text-xs text-purple-600">🚀 Rising Fast</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Predictive Analytics Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">
+                🔮 What's Next on the Stage?
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Trend Predictions -->
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-purple-800">📊 Trend Predictions</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">Biden momentum</span>
+                            <span class="text-green-600 font-medium">📈 Continuing</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">DeSantis trajectory</span>
+                            <span class="text-purple-600 font-medium">🚀 Accelerating</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">Trump recovery</span>
+                            <span class="text-yellow-600 font-medium">⚠️ Uncertain</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">Overall volatility</span>
+                            <span class="text-red-600 font-medium">🔥 High</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Events to Watch -->
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-blue-800">📅 Events to Watch</h3>
+                    <div class="space-y-3">
+                        <div class="bg-white rounded p-3">
+                            <div class="font-medium text-sm">Tomorrow</div>
+                            <div class="text-xs text-gray-600">Major policy announcement expected</div>
+                        </div>
+                        <div class="bg-white rounded p-3">
+                            <div class="font-medium text-sm">Next Week</div>
+                            <div class="text-xs text-gray-600">Primary debate scheduled</div>
+                        </div>
+                        <div class="bg-white rounded p-3">
+                            <div class="font-medium text-sm">Month End</div>
+                            <div class="text-xs text-gray-600">Quarterly sentiment report</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Algorithm Insights -->
+                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-green-800">🤖 AI Insights</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-white rounded p-3">
+                            <strong>Pattern Recognition:</strong> Biden's surge follows historical patterns similar to 2020 campaign momentum.
+                        </div>
+                        <div class="bg-white rounded p-3">
+                            <strong>Sentiment Analysis:</strong> DeSantis benefiting from positive policy coverage and youth engagement.
+                        </div>
+                        <div class="bg-white rounded p-3">
+                            <strong>Volatility Index:</strong> Expect 15-20% ranking changes in next 7 days.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h3 class="text-2xl font-bold mb-4">Political<span class="text-yellow-300">Stage</span></h3>
+            <p class="text-gray-400 mb-6">
+                Historical data powered by advanced analytics • Real-time tracking • Predictive modeling
+            </p>
+            <div class="flex justify-center space-x-8 text-sm text-gray-400">
+                <a href="#" class="hover:text-white">Data Sources</a>
+                <a href="#" class="hover:text-white">Methodology</a>
+                <a href="#" class="hover:text-white">Historical Archive</a>
+                <a href="#" class="hover:text-white">API Access</a>
+                <a href="#" class="hover:text-white">Export Data</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
