@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mix 2: Swiss-Newspaper Modern - PoliticalStage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        .display-font { font-family: 'Playfair Display', serif; }
+        .swiss-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+        .accent-line { 
+            background: linear-gradient(90deg, #000 0%, #666 50%, #000 100%);
+            height: 1px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-black">
+    <!-- Modern Swiss-Newspaper Header -->
+    <header class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 py-10">
+            <div class="swiss-grid items-end">
+                <div class="col-span-7">
+                    <div class="text-xs text-gray-500 mb-4 font-medium tracking-widest uppercase">
+                        Real-Time Political Intelligence • January 13, 2024
+                    </div>
+                    <h1 class="text-6xl font-light tracking-tight mb-3">
+                        Political<span class="display-font font-semibold italic">Stage</span>
+                    </h1>
+                    <div class="accent-line mb-3"></div>
+                    <p class="text-lg font-light text-gray-600">
+                        Precision analytics for the modern political landscape
+                    </p>
+                </div>
+                <div class="col-span-5">
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div class="bg-white border border-gray-300 p-4">
+                            <div class="text-2xl font-light">847K</div>
+                            <div class="text-xs text-gray-600 uppercase tracking-wider">Votes</div>
+                        </div>
+                        <div class="bg-white border border-gray-300 p-4">
+                            <div class="text-2xl font-light">Live</div>
+                            <div class="text-xs text-gray-600 uppercase tracking-wider">Updates</div>
+                        </div>
+                        <div class="bg-white border border-gray-300 p-4">
+                            <div class="text-2xl font-light">24/7</div>
+                            <div class="text-xs text-gray-600 uppercase tracking-wider">Coverage</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <!-- Featured Rankings -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-light display-font mb-4">Current Leadership</h2>
+                <div class="accent-line max-w-32 mx-auto"></div>
+            </div>
+            
+            <div class="swiss-grid gap-6">
+                <!-- #1 Biden -->
+                <div class="col-span-4">
+                    <div class="bg-white border border-gray-300 p-8 h-full">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="text-5xl font-light text-blue-600">01</div>
+                            <div class="text-right text-sm">
+                                <div class="font-medium">Democratic Party</div>
+                                <div class="text-gray-500">Incumbent</div>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-2xl font-medium display-font mb-6">Joseph R. Biden</h3>
+                        
+                        <div class="grid grid-cols-2 gap-4 text-sm mb-6">
+                            <div class="text-center p-3 bg-gray-50">
+                                <div class="text-2xl font-light">847K</div>
+                                <div class="text-gray-600 uppercase tracking-wider">Votes</div>
+                            </div>
+                            <div class="text-center p-3 bg-gray-50">
+                                <div class="text-2xl font-light text-green-600">+0.32</div>
+                                <div class="text-gray-600 uppercase tracking-wider">Sentiment</div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-xs text-gray-500 uppercase tracking-wider">
+                            Democratic frontrunner maintains steady lead
+                        </div>
+                    </div>
+                </div>
+
+                <!-- #2 Trump -->
+                <div class="col-span-4">
+                    <div class="bg-white border border-gray-300 p-8 h-full">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="text-5xl font-light text-red-600">02</div>
+                            <div class="text-right text-sm">
+                                <div class="font-medium">Republican Party</div>
+                                <div class="text-gray-500">Former President</div>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-2xl font-medium display-font mb-6">Donald J. Trump</h3>
+                        
+                        <div class="grid grid-cols-2 gap-4 text-sm mb-6">
+                            <div class="text-center p-3 bg-gray-50">
+                                <div class="text-2xl font-light">743K</div>
+                                <div class="text-gray-600 uppercase tracking-wider">Votes</div>
+                            </div>
+                            <div class="text-center p-3 bg-gray-50">
+                                <div class="text-2xl font-light text-red-600">-0.18</div>
+                                <div class="text-gray-600 uppercase tracking-wider">Sentiment</div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-xs text-gray-500 uppercase tracking-wider">
+                            Republican challenger holds strong position
+                        </div>
+                    </div>
+                </div>
+
+                <!-- #3 DeSantis -->
+                <div class="col-span-4">
+                    <div class="bg-white border border-gray-300 p-8 h-full">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="text-5xl font-light text-purple-600">03</div>
+                            <div class="text-right text-sm">
+                                <div class="font-medium">Republican Party</div>
+                                <div class="text-gray-500">Governor</div>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-2xl font-medium display-font mb-6">Ronald D. DeSantis</h3>
+                        
+                        <div class="grid grid-cols-2 gap-4 text-sm mb-6">
+                            <div class="text-center p-3 bg-gray-50">
+                                <div class="text-2xl font-light">432K</div>
+                                <div class="text-gray-600 uppercase tracking-wider">Votes</div>
+                            </div>
+                            <div class="text-center p-3 bg-gray-50">
+                                <div class="text-2xl font-light text-green-600">+0.24</div>
+                                <div class="text-gray-600 uppercase tracking-wider">Sentiment</div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-xs text-gray-500 uppercase tracking-wider">
+                            Rising momentum with 127% growth rate
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Candidates & Analytics -->
+        <div class="swiss-grid">
+            <!-- Main Candidate Grid -->
+            <div class="col-span-9">
+                <h2 class="text-2xl font-light mb-8 border-b border-gray-300 pb-4 display-font">
+                    All Candidates
+                </h2>
+                
+                <div class="grid grid-cols-5 gap-3">
+                    <div class="bg-white border border-gray-300 p-4 text-center">
+                        <div class="text-lg font-medium mb-2">04</div>
+                        <h3 class="font-medium text-sm display-font">Nikki Haley</h3>
+                        <div class="text-xs text-red-600 mb-2">Republican</div>
+                        <div class="text-xs">284K</div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-300 p-4 text-center">
+                        <div class="text-lg font-medium mb-2">05</div>
+                        <h3 class="font-medium text-sm display-font">Kamala Harris</h3>
+                        <div class="text-xs text-blue-600 mb-2">Democrat</div>
+                        <div class="text-xs">267K</div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-300 p-4 text-center">
+                        <div class="text-lg font-medium mb-2">06</div>
+                        <h3 class="font-medium text-sm display-font">Vivek Ramaswamy</h3>
+                        <div class="text-xs text-red-600 mb-2">Republican</div>
+                        <div class="text-xs">156K</div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-300 p-4 text-center">
+                        <div class="text-lg font-medium mb-2">07</div>
+                        <h3 class="font-medium text-sm display-font">Chris Christie</h3>
+                        <div class="text-xs text-red-600 mb-2">Republican</div>
+                        <div class="text-xs">98K</div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-300 p-4 text-center">
+                        <div class="text-lg font-medium mb-2">08</div>
+                        <h3 class="font-medium text-sm display-font">Tim Scott</h3>
+                        <div class="text-xs text-red-600 mb-2">Republican</div>
+                        <div class="text-xs">87K</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Sidebar -->
+            <div class="col-span-3">
+                <div class="bg-white border border-gray-300 p-6">
+                    <h3 class="text-lg font-medium mb-6 display-font">Analytics Dashboard</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-medium mb-3 text-sm uppercase tracking-wider">Regional Data</h4>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex justify-between border-b border-gray-100 pb-2">
+                                    <span class="font-medium">Texas</span>
+                                    <span>Trump • 8.9K</span>
+                                </div>
+                                <div class="flex justify-between border-b border-gray-100 pb-2">
+                                    <span class="font-medium">California</span>
+                                    <span>Biden • 12.3K</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-medium">New York</span>
+                                    <span>Biden • 8.7K</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="border-t border-gray-200 pt-6">
+                            <h4 class="font-medium mb-3 text-sm uppercase tracking-wider">Live Metrics</h4>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Vote Velocity</span>
+                                    <span class="font-medium">+347/min</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Active Users</span>
+                                    <span class="font-medium">18.2K</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Daily Updates</span>
+                                    <span class="font-medium">1,247</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

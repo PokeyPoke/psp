@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mix 5: Swiss-Newspaper Tabloid - PoliticalStage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700;900&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        .headline-font { font-family: 'Playfair Display', serif; }
+        .swiss-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .breaking-banner {
+            background: linear-gradient(90deg, #dc2626 0%, #b91c1c 100%);
+            animation: pulse 2s infinite;
+        }
+        .tabloid-box {
+            border: 2px solid #000;
+            background: #fff;
+        }
+        .highlight-yellow { background: #fef3c7; }
+        .highlight-red { background: #fecaca; }
+        .highlight-blue { background: #dbeafe; }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Tabloid Header -->
+    <header class="bg-white border-b-4 border-black">
+        <!-- Breaking News Banner -->
+        <div class="breaking-banner text-white py-2 text-center">
+            <div class="text-sm font-bold uppercase tracking-wider">
+                🚨 BREAKING: Live Political Rankings Update • Vote Now! 🚨
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <div class="swiss-grid items-center">
+                <div class="col-span-8">
+                    <div class="text-xs font-bold uppercase tracking-widest text-red-600 mb-2">
+                        EXCLUSIVE • JANUARY 13, 2024 • ISSUE #247
+                    </div>
+                    <h1 class="text-6xl font-black headline-font tracking-tight mb-2">
+                        POLITICAL<span class="text-red-600">STAGE</span>
+                    </h1>
+                    <p class="text-lg font-bold text-gray-800 uppercase tracking-wide">
+                        "THE PEOPLE'S CHOICE TRACKER"
+                    </p>
+                </div>
+                <div class="col-span-4">
+                    <div class="tabloid-box p-4 highlight-yellow">
+                        <div class="text-center">
+                            <div class="text-3xl font-black text-red-600">847K</div>
+                            <div class="text-sm font-bold uppercase">VOTES CAST TODAY!</div>
+                            <div class="text-xs font-bold text-red-600 mt-1">↑ RECORD HIGH!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Tabloid Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Front Page Headlines -->
+        <section class="mb-12">
+            <div class="tabloid-box p-2 mb-6 bg-red-600 text-white">
+                <h2 class="text-3xl font-black text-center headline-font">
+                    🏆 WHO'S WINNING? THE SHOCKING RESULTS! 🏆
+                </h2>
+            </div>
+            
+            <div class="swiss-grid gap-6">
+                <!-- #1 Biden - Tabloid Style -->
+                <div class="col-span-4">
+                    <div class="tabloid-box p-6 highlight-blue">
+                        <div class="text-center">
+                            <div class="bg-blue-600 text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                                <span class="text-3xl font-black">#1</span>
+                            </div>
+                            <div class="tabloid-box bg-white p-4 mb-4">
+                                <h3 class="text-2xl font-black headline-font mb-1">BIDEN DOMINATES!</h3>
+                                <p class="text-sm font-bold text-blue-600 uppercase">Democratic Powerhouse</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="tabloid-box bg-white p-3">
+                                    <div class="text-2xl font-black text-blue-600">847K</div>
+                                    <div class="text-xs font-bold uppercase">VOTES!</div>
+                                </div>
+                                <div class="tabloid-box bg-white p-3">
+                                    <div class="text-2xl font-black text-green-600">+0.32</div>
+                                    <div class="text-xs font-bold uppercase">LOVE HIM!</div>
+                                </div>
+                            </div>
+                            
+                            <div class="tabloid-box bg-green-200 p-2 mt-4">
+                                <div class="text-xs font-bold text-green-800 uppercase">
+                                    "UNSTOPPABLE MOMENTUM!"
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- #2 Trump - Tabloid Style -->
+                <div class="col-span-4">
+                    <div class="tabloid-box p-6 highlight-red">
+                        <div class="text-center">
+                            <div class="bg-red-600 text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                                <span class="text-3xl font-black">#2</span>
+                            </div>
+                            <div class="tabloid-box bg-white p-4 mb-4">
+                                <h3 class="text-2xl font-black headline-font mb-1">TRUMP FIGHTS BACK!</h3>
+                                <p class="text-sm font-bold text-red-600 uppercase">The Comeback Kid</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="tabloid-box bg-white p-3">
+                                    <div class="text-2xl font-black text-red-600">743K</div>
+                                    <div class="text-xs font-bold uppercase">VOTES!</div>
+                                </div>
+                                <div class="tabloid-box bg-white p-3">
+                                    <div class="text-2xl font-black text-red-600">-0.18</div>
+                                    <div class="text-xs font-bold uppercase">MIXED</div>
+                                </div>
+                            </div>
+                            
+                            <div class="tabloid-box bg-orange-200 p-2 mt-4">
+                                <div class="text-xs font-bold text-orange-800 uppercase">
+                                    "NEVER GIVE UP!"
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- #3 DeSantis - Tabloid Style -->
+                <div class="col-span-4">
+                    <div class="tabloid-box p-6 highlight-yellow">
+                        <div class="text-center">
+                            <div class="bg-purple-600 text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                                <span class="text-3xl font-black">#3</span>
+                            </div>
+                            <div class="tabloid-box bg-white p-4 mb-4">
+                                <h3 class="text-2xl font-black headline-font mb-1">DESANTIS SURGE!</h3>
+                                <p class="text-sm font-bold text-purple-600 uppercase">Rising Star</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="tabloid-box bg-white p-3">
+                                    <div class="text-2xl font-black text-purple-600">432K</div>
+                                    <div class="text-xs font-bold uppercase">VOTES!</div>
+                                </div>
+                                <div class="tabloid-box bg-white p-3">
+                                    <div class="text-2xl font-black text-green-600">+0.24</div>
+                                    <div class="text-xs font-bold uppercase">HOT!</div>
+                                </div>
+                            </div>
+                            
+                            <div class="tabloid-box bg-green-200 p-2 mt-4">
+                                <div class="text-xs font-bold text-green-800 uppercase">
+                                    "127% GROWTH RATE!"
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Candidates Tabloid Grid -->
+        <div class="swiss-grid">
+            <!-- Main Content -->
+            <div class="col-span-9">
+                <div class="tabloid-box p-2 mb-6 bg-black text-white">
+                    <h2 class="text-2xl font-black text-center headline-font">
+                        📊 COMPLETE RANKINGS - WHO'S HOT & WHO'S NOT! 📊
+                    </h2>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="tabloid-box p-4 text-center highlight-red">
+                        <div class="font-black text-lg">#4</div>
+                        <h3 class="font-bold headline-font">NIKKI HALEY</h3>
+                        <div class="text-sm font-bold text-red-600">REPUBLICAN</div>
+                        <div class="tabloid-box bg-white p-2 mt-2">
+                            <div class="text-lg font-black">284K</div>
+                            <div class="text-xs font-bold">VOTES</div>
+                        </div>
+                        <div class="text-xs font-bold text-green-600 mt-1">↗ RISING!</div>
+                    </div>
+                    
+                    <div class="tabloid-box p-4 text-center highlight-blue">
+                        <div class="font-black text-lg">#5</div>
+                        <h3 class="font-bold headline-font">KAMALA HARRIS</h3>
+                        <div class="text-sm font-bold text-blue-600">DEMOCRAT</div>
+                        <div class="tabloid-box bg-white p-2 mt-2">
+                            <div class="text-lg font-black">267K</div>
+                            <div class="text-xs font-bold">VOTES</div>
+                        </div>
+                        <div class="text-xs font-bold text-blue-600 mt-1">→ STEADY</div>
+                    </div>
+                    
+                    <div class="tabloid-box p-4 text-center highlight-yellow">
+                        <div class="font-black text-lg">#6</div>
+                        <h3 class="font-bold headline-font">VIVEK RAMASWAMY</h3>
+                        <div class="text-sm font-bold text-red-600">REPUBLICAN</div>
+                        <div class="tabloid-box bg-white p-2 mt-2">
+                            <div class="text-lg font-black">156K</div>
+                            <div class="text-xs font-bold">VOTES</div>
+                        </div>
+                        <div class="text-xs font-bold text-green-600 mt-1">🚀 ROCKET!</div>
+                    </div>
+                </div>
+                
+                <!-- Quick Facts Box -->
+                <div class="tabloid-box p-4 mt-6 bg-yellow-100">
+                    <h3 class="text-xl font-black headline-font mb-3 text-center">⚡ SHOCKING FACTS! ⚡</h3>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-black text-red-600">+347</div>
+                            <div class="text-xs font-bold uppercase">Votes per minute!</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-black text-blue-600">18.2K</div>
+                            <div class="text-xs font-bold uppercase">People voting now!</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-black text-green-600">1,247</div>
+                            <div class="text-xs font-bold uppercase">Updates today!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabloid Sidebar -->
+            <div class="col-span-3">
+                <div class="space-y-6">
+                    <!-- Hot Gossip Box -->
+                    <div class="tabloid-box p-4 bg-pink-100">
+                        <h3 class="text-lg font-black headline-font mb-3 text-center">🔥 HOT GOSSIP! 🔥</h3>
+                        <div class="space-y-3 text-sm">
+                            <div class="tabloid-box bg-white p-2">
+                                <div class="font-bold">TEXAS DRAMA!</div>
+                                <div class="text-xs">Trump leads by huge margin!</div>
+                                <div class="text-xs font-bold text-red-600">8.9K votes</div>
+                            </div>
+                            <div class="tabloid-box bg-white p-2">
+                                <div class="font-bold">CALIFORNIA CHAOS!</div>
+                                <div class="text-xs">Biden crushing competition!</div>
+                                <div class="text-xs font-bold text-blue-600">12.3K votes</div>
+                            </div>
+                            <div class="tabloid-box bg-white p-2">
+                                <div class="font-bold">NYC MADNESS!</div>
+                                <div class="text-xs">Biden takes the Big Apple!</div>
+                                <div class="text-xs font-bold text-blue-600">8.7K votes</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Live Action Box -->
+                    <div class="tabloid-box p-4 bg-green-100">
+                        <h3 class="text-lg font-black headline-font mb-3 text-center">⚡ LIVE ACTION! ⚡</h3>
+                        <div class="space-y-2 text-sm font-bold">
+                            <div class="flex justify-between">
+                                <span>VOTE SPEED:</span>
+                                <span class="text-red-600">INSANE!</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>PEOPLE ONLINE:</span>
+                                <span class="text-green-600">MASSIVE!</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>EXCITEMENT:</span>
+                                <span class="text-purple-600">OFF CHARTS!</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Call to Action -->
+                    <div class="tabloid-box p-4 bg-red-600 text-white text-center">
+                        <h3 class="text-lg font-black headline-font mb-2">VOTE NOW!</h3>
+                        <div class="text-sm font-bold">
+                            Don't miss out on the biggest political event of the year!
+                        </div>
+                        <div class="tabloid-box bg-white text-black p-2 mt-3">
+                            <div class="text-lg font-black">YOUR VOTE COUNTS!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

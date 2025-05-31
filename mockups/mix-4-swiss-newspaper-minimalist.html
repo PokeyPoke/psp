@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mix 4: Swiss-Newspaper Minimalist - PoliticalStage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Crimson+Text:wght@300;400;600&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.5;
+        }
+        .serif-accent { font-family: 'Crimson Text', serif; }
+        .swiss-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 40px;
+        }
+        .minimal-border { border: 1px solid #e5e5e5; }
+        .divider-line { 
+            width: 60px;
+            height: 1px;
+            background: #000;
+        }
+    </style>
+</head>
+<body class="bg-white text-black">
+    <!-- Ultra-Minimal Header -->
+    <header class="border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-8 py-16">
+            <div class="text-center">
+                <h1 class="text-7xl font-light tracking-tight mb-8">
+                    political
+                </h1>
+                <div class="divider-line mx-auto mb-8"></div>
+                <p class="text-lg font-light text-gray-600 serif-accent">
+                    Real-time political analysis
+                </p>
+                <div class="text-sm text-gray-400 mt-6 font-light">
+                    January 13, 2024
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Minimal Content -->
+    <main class="max-w-6xl mx-auto px-8 py-20">
+        <!-- Current Leaders Section -->
+        <section class="mb-32">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-light mb-6 serif-accent">Current Leaders</h2>
+                <div class="divider-line mx-auto"></div>
+            </div>
+            
+            <div class="swiss-grid gap-12">
+                <!-- #1 -->
+                <div class="col-span-4 text-center">
+                    <div class="mb-8">
+                        <div class="text-8xl font-light text-blue-600 mb-4">1</div>
+                        <h3 class="text-2xl font-light serif-accent mb-2">Joe Biden</h3>
+                        <p class="text-sm text-gray-500 font-light">Democratic Party</p>
+                    </div>
+                    
+                    <div class="minimal-border p-8">
+                        <div class="grid grid-cols-2 gap-8 text-center">
+                            <div>
+                                <div class="text-3xl font-light">847K</div>
+                                <div class="text-xs text-gray-500 uppercase tracking-widest mt-2">Votes</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-light text-green-600">+0.32</div>
+                                <div class="text-xs text-gray-500 uppercase tracking-widest mt-2">Sentiment</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- #2 -->
+                <div class="col-span-4 text-center">
+                    <div class="mb-8">
+                        <div class="text-8xl font-light text-red-600 mb-4">2</div>
+                        <h3 class="text-2xl font-light serif-accent mb-2">Donald Trump</h3>
+                        <p class="text-sm text-gray-500 font-light">Republican Party</p>
+                    </div>
+                    
+                    <div class="minimal-border p-8">
+                        <div class="grid grid-cols-2 gap-8 text-center">
+                            <div>
+                                <div class="text-3xl font-light">743K</div>
+                                <div class="text-xs text-gray-500 uppercase tracking-widest mt-2">Votes</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-light text-red-600">-0.18</div>
+                                <div class="text-xs text-gray-500 uppercase tracking-widest mt-2">Sentiment</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- #3 -->
+                <div class="col-span-4 text-center">
+                    <div class="mb-8">
+                        <div class="text-8xl font-light text-gray-600 mb-4">3</div>
+                        <h3 class="text-2xl font-light serif-accent mb-2">Ron DeSantis</h3>
+                        <p class="text-sm text-gray-500 font-light">Republican Party</p>
+                    </div>
+                    
+                    <div class="minimal-border p-8">
+                        <div class="grid grid-cols-2 gap-8 text-center">
+                            <div>
+                                <div class="text-3xl font-light">432K</div>
+                                <div class="text-xs text-gray-500 uppercase tracking-widest mt-2">Votes</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-light text-green-600">+0.24</div>
+                                <div class="text-xs text-gray-500 uppercase tracking-widest mt-2">Sentiment</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Candidates Section -->
+        <section>
+            <div class="swiss-grid">
+                <!-- Main Content -->
+                <div class="col-span-8">
+                    <div class="mb-12">
+                        <h2 class="text-2xl font-light serif-accent mb-6">All Candidates</h2>
+                        <div class="divider-line"></div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="minimal-border">
+                            <div class="grid grid-cols-6 gap-6 p-6">
+                                <div class="text-center">
+                                    <div class="text-2xl font-light mb-2">4</div>
+                                    <h3 class="font-light serif-accent text-sm">Nikki Haley</h3>
+                                    <div class="text-xs text-red-600 mt-1">Republican</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-light mb-2">5</div>
+                                    <h3 class="font-light serif-accent text-sm">Kamala Harris</h3>
+                                    <div class="text-xs text-blue-600 mt-1">Democrat</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-light mb-2">6</div>
+                                    <h3 class="font-light serif-accent text-sm">Vivek Ramaswamy</h3>
+                                    <div class="text-xs text-red-600 mt-1">Republican</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-light mb-2">7</div>
+                                    <h3 class="font-light serif-accent text-sm">Chris Christie</h3>
+                                    <div class="text-xs text-red-600 mt-1">Republican</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-light mb-2">8</div>
+                                    <h3 class="font-light serif-accent text-sm">Tim Scott</h3>
+                                    <div class="text-xs text-red-600 mt-1">Republican</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-light mb-2">9</div>
+                                    <h3 class="font-light serif-accent text-sm">Gavin Newsom</h3>
+                                    <div class="text-xs text-blue-600 mt-1">Democrat</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-6 gap-6 text-center text-sm">
+                            <div>
+                                <div class="font-light">284K</div>
+                                <div class="text-xs text-gray-500 mt-1">votes</div>
+                            </div>
+                            <div>
+                                <div class="font-light">267K</div>
+                                <div class="text-xs text-gray-500 mt-1">votes</div>
+                            </div>
+                            <div>
+                                <div class="font-light">156K</div>
+                                <div class="text-xs text-gray-500 mt-1">votes</div>
+                            </div>
+                            <div>
+                                <div class="font-light">98K</div>
+                                <div class="text-xs text-gray-500 mt-1">votes</div>
+                            </div>
+                            <div>
+                                <div class="font-light">87K</div>
+                                <div class="text-xs text-gray-500 mt-1">votes</div>
+                            </div>
+                            <div>
+                                <div class="font-light">76K</div>
+                                <div class="text-xs text-gray-500 mt-1">votes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Minimal Sidebar -->
+                <div class="col-span-4">
+                    <div class="mb-12">
+                        <h3 class="text-lg font-light serif-accent mb-6">Data</h3>
+                        <div class="divider-line"></div>
+                    </div>
+                    
+                    <div class="space-y-12">
+                        <!-- Regional Data -->
+                        <div>
+                            <h4 class="text-sm font-light mb-6 uppercase tracking-widest text-gray-500">Regional</h4>
+                            <div class="space-y-4 text-sm">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-light serif-accent">Texas</span>
+                                    <span class="font-light">Trump</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-light serif-accent">California</span>
+                                    <span class="font-light">Biden</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-light serif-accent">New York</span>
+                                    <span class="font-light">Biden</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Live Metrics -->
+                        <div>
+                            <h4 class="text-sm font-light mb-6 uppercase tracking-widest text-gray-500">Metrics</h4>
+                            <div class="space-y-4 text-sm">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-light serif-accent">Vote rate</span>
+                                    <span class="font-light">+347/min</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-light serif-accent">Active users</span>
+                                    <span class="font-light">18.2K</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-light serif-accent">Updates today</span>
+                                    <span class="font-light">1,247</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Summary Stats -->
+                        <div>
+                            <h4 class="text-sm font-light mb-6 uppercase tracking-widest text-gray-500">Summary</h4>
+                            <div class="minimal-border p-6 text-center">
+                                <div class="text-2xl font-light mb-2">847,293</div>
+                                <div class="text-xs text-gray-500 uppercase tracking-widest">Total votes cast</div>
+                                <div class="text-xs text-gray-400 mt-4 font-light">
+                                    Last updated 2 minutes ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

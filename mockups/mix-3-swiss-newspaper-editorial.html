@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mix 3: Swiss-Newspaper Editorial - PoliticalStage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        .editorial-font { font-family: 'Cormorant Garamond', serif; }
+        .swiss-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 32px;
+        }
+        .pull-quote {
+            border-left: 4px solid #000;
+            padding-left: 1rem;
+            font-style: italic;
+        }
+        .byline { 
+            border-top: 1px solid #000; 
+            border-bottom: 1px solid #000;
+            padding: 8px 0;
+        }
+    </style>
+</head>
+<body class="bg-white text-black">
+    <!-- Editorial Header -->
+    <header class="border-b border-black">
+        <div class="max-w-7xl mx-auto px-8 py-12">
+            <div class="text-center">
+                <div class="text-xs tracking-widest uppercase text-gray-600 mb-4">
+                    Independent Political Analysis • Founded 2024
+                </div>
+                <h1 class="text-7xl font-light tracking-tight mb-4">
+                    political<span class="editorial-font font-semibold italic">stage</span>
+                </h1>
+                <div class="byline max-w-2xl mx-auto">
+                    <p class="editorial-font text-xl italic text-gray-700">
+                        "Meticulous analysis of the American political landscape"
+                    </p>
+                </div>
+                <div class="text-sm text-gray-500 mt-4">
+                    Saturday, January 13, 2024 • Issue No. 247
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Editorial Content -->
+    <main class="max-w-7xl mx-auto px-8 py-16">
+        <!-- Lead Editorial -->
+        <article class="mb-20">
+            <header class="text-center mb-12">
+                <h2 class="text-4xl font-light editorial-font mb-6">
+                    The Current State of American Political Sentiment
+                </h2>
+                <div class="w-24 h-px bg-black mx-auto mb-6"></div>
+                <div class="text-sm text-gray-600 uppercase tracking-wider">
+                    Analysis • Live Data • January 13, 2024
+                </div>
+            </header>
+
+            <!-- Top 3 Analysis -->
+            <div class="swiss-grid mb-12">
+                <!-- Biden Analysis -->
+                <div class="col-span-4">
+                    <div class="border border-gray-300 p-8">
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-6xl font-light text-blue-600 mr-4">01</span>
+                            <div>
+                                <h3 class="text-2xl font-medium editorial-font">Joseph R. Biden</h3>
+                                <p class="text-sm text-gray-600 italic">Democratic Leadership</p>
+                            </div>
+                        </div>
+                        
+                        <div class="pull-quote mb-6 text-sm editorial-font">
+                            "The incumbent maintains a commanding lead through steady governance 
+                            and broad coalition support."
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 text-center mb-4">
+                            <div>
+                                <div class="text-2xl font-light">847,293</div>
+                                <div class="text-xs uppercase tracking-wider text-gray-600">Total Votes</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-light text-green-600">+0.32</div>
+                                <div class="text-xs uppercase tracking-wider text-gray-600">Sentiment Index</div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-xs text-gray-500 editorial-font italic">
+                            Consistent performance across demographic lines with particular 
+                            strength in suburban constituencies.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Trump Analysis -->
+                <div class="col-span-4">
+                    <div class="border border-gray-300 p-8">
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-6xl font-light text-red-600 mr-4">02</span>
+                            <div>
+                                <h3 class="text-2xl font-medium editorial-font">Donald J. Trump</h3>
+                                <p class="text-sm text-gray-600 italic">Republican Challenge</p>
+                            </div>
+                        </div>
+                        
+                        <div class="pull-quote mb-6 text-sm editorial-font">
+                            "The former president retains significant influence within 
+                            Republican circles despite ongoing challenges."
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 text-center mb-4">
+                            <div>
+                                <div class="text-2xl font-light">743,187</div>
+                                <div class="text-xs uppercase tracking-wider text-gray-600">Total Votes</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-light text-red-600">-0.18</div>
+                                <div class="text-xs uppercase tracking-wider text-gray-600">Sentiment Index</div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-xs text-gray-500 editorial-font italic">
+                            Strong base support continues though facing headwinds 
+                            in swing state polling data.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- DeSantis Analysis -->
+                <div class="col-span-4">
+                    <div class="border border-gray-300 p-8">
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-6xl font-light text-purple-600 mr-4">03</span>
+                            <div>
+                                <h3 class="text-2xl font-medium editorial-font">Ronald D. DeSantis</h3>
+                                <p class="text-sm text-gray-600 italic">Emerging Force</p>
+                            </div>
+                        </div>
+                        
+                        <div class="pull-quote mb-6 text-sm editorial-font">
+                            "The Florida Governor represents a new generation of 
+                            Republican leadership with notable momentum."
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 text-center mb-4">
+                            <div>
+                                <div class="text-2xl font-light">432,156</div>
+                                <div class="text-xs uppercase tracking-wider text-gray-600">Total Votes</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-light text-green-600">+0.24</div>
+                                <div class="text-xs uppercase tracking-wider text-gray-600">Sentiment Index</div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-xs text-gray-500 editorial-font italic">
+                            Remarkable 127% growth trajectory signals potential 
+                            shift in Republican primary dynamics.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Secondary Content -->
+        <div class="swiss-grid">
+            <!-- Full Candidate Analysis -->
+            <div class="col-span-8">
+                <h2 class="text-3xl font-light editorial-font mb-8 border-b border-gray-300 pb-4">
+                    Complete Field Analysis
+                </h2>
+                
+                <div class="grid grid-cols-4 gap-4 mb-8">
+                    <div class="border border-gray-300 p-4 text-center">
+                        <div class="text-lg font-medium mb-2">04</div>
+                        <h3 class="font-medium editorial-font text-sm">Nikki R. Haley</h3>
+                        <div class="text-xs text-red-600 mb-2">Republican</div>
+                        <div class="text-xs">284,192 votes</div>
+                        <div class="text-xs text-green-600">+0.18 sentiment</div>
+                    </div>
+                    
+                    <div class="border border-gray-300 p-4 text-center">
+                        <div class="text-lg font-medium mb-2">05</div>
+                        <h3 class="font-medium editorial-font text-sm">Kamala D. Harris</h3>
+                        <div class="text-xs text-blue-600 mb-2">Democrat</div>
+                        <div class="text-xs">267,845 votes</div>
+                        <div class="text-xs text-green-600">+0.05 sentiment</div>
+                    </div>
+                    
+                    <div class="border border-gray-300 p-4 text-center">
+                        <div class="text-lg font-medium mb-2">06</div>
+                        <h3 class="font-medium editorial-font text-sm">Vivek Ramaswamy</h3>
+                        <div class="text-xs text-red-600 mb-2">Republican</div>
+                        <div class="text-xs">156,234 votes</div>
+                        <div class="text-xs text-green-600">+0.28 sentiment</div>
+                    </div>
+                    
+                    <div class="border border-gray-300 p-4 text-center">
+                        <div class="text-lg font-medium mb-2">07</div>
+                        <h3 class="font-medium editorial-font text-sm">Christopher J. Christie</h3>
+                        <div class="text-xs text-red-600 mb-2">Republican</div>
+                        <div class="text-xs">98,567 votes</div>
+                        <div class="text-xs text-red-600">-0.12 sentiment</div>
+                    </div>
+                </div>
+
+                <!-- Editorial Commentary -->
+                <div class="border border-gray-300 p-6">
+                    <h3 class="text-xl font-medium editorial-font mb-4">Editorial Commentary</h3>
+                    <p class="text-sm editorial-font leading-relaxed mb-4">
+                        The current political landscape reveals a nation in transition, with traditional 
+                        party lines being redrawn by emerging voices and shifting demographics. Our analysis 
+                        suggests that while established leaders maintain their positions, the remarkable 
+                        growth rates among newer candidates indicate a potential realignment.
+                    </p>
+                    <p class="text-sm editorial-font leading-relaxed">
+                        The data reflects not merely vote counts, but sentiment patterns that reveal 
+                        deeper currents in American political thought. These metrics serve as early 
+                        indicators of broader electoral trends.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Analysis Sidebar -->
+            <div class="col-span-4">
+                <div class="border border-gray-300 p-6">
+                    <h3 class="text-xl font-medium editorial-font mb-6">
+                        Analytical Framework
+                    </h3>
+                    
+                    <div class="space-y-6 text-sm">
+                        <div>
+                            <h4 class="font-medium mb-3 uppercase tracking-wider">Regional Strength</h4>
+                            <div class="space-y-3">
+                                <div class="border-b border-gray-200 pb-2">
+                                    <div class="flex justify-between">
+                                        <span class="editorial-font">Texas</span>
+                                        <span class="font-medium">Trump</span>
+                                    </div>
+                                    <div class="text-xs text-gray-500">8,943 votes • Rural strength</div>
+                                </div>
+                                <div class="border-b border-gray-200 pb-2">
+                                    <div class="flex justify-between">
+                                        <span class="editorial-font">California</span>
+                                        <span class="font-medium">Biden</span>
+                                    </div>
+                                    <div class="text-xs text-gray-500">12,347 votes • Urban coalition</div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between">
+                                        <span class="editorial-font">New York</span>
+                                        <span class="font-medium">Biden</span>
+                                    </div>
+                                    <div class="text-xs text-gray-500">8,756 votes • Suburban gains</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="border-t border-gray-200 pt-6">
+                            <h4 class="font-medium mb-3 uppercase tracking-wider">Live Analytics</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="editorial-font">Vote Velocity</span>
+                                    <span class="font-medium">+347/minute</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="editorial-font">Active Participants</span>
+                                    <span class="font-medium">18,247</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="editorial-font">Data Points Today</span>
+                                    <span class="font-medium">1,247</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="border-t border-gray-200 pt-6">
+                            <h4 class="font-medium mb-3 uppercase tracking-wider">Methodology</h4>
+                            <p class="text-xs editorial-font italic text-gray-600 leading-relaxed">
+                                Our sentiment analysis combines real-time voting data with 
+                                social media monitoring, news coverage analysis, and 
+                                demographic polling to provide comprehensive political insight.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
