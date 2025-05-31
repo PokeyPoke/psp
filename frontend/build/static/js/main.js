@@ -181,26 +181,33 @@ function HomePage() {
             React.createElement('h2', { className: 'text-2xl font-bold text-center mb-6 text-gray-900' }, '🏆 Leading the Stage'),
             React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto' },
               sortedCandidates.slice(0, 3).map((candidate, index) => {
-                const gradientClass = index === 0 ? 'from-blue-500 to-blue-700' :
-                                    index === 1 ? 'from-red-500 to-red-700' :
+                // Party-based color coding
+                const isRepublican = candidate.party && candidate.party.toLowerCase().includes('republican');
+                const isDemocrat = candidate.party && candidate.party.toLowerCase().includes('democrat');
+                const isIndependent = !isRepublican && !isDemocrat;
+                
+                const gradientClass = isRepublican ? 'from-red-500 to-red-700' :
+                                    isDemocrat ? 'from-blue-500 to-blue-700' :
                                     'from-purple-500 to-purple-700';
                 
                 const badgeClass = index === 0 ? 'bg-gradient-to-r from-yellow-400 to-yellow-500' : 
                                   index === 1 ? 'bg-gray-400' : 'bg-orange-500';
                 
-                const textColorClass = index === 0 ? 'text-blue-200' : 
-                                      index === 1 ? 'text-red-200' : 'text-purple-200';
+                const textColorClass = isRepublican ? 'text-red-200' :
+                                      isDemocrat ? 'text-blue-200' : 'text-purple-200';
+                
+                const gradientBackground = isRepublican ? 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)' :
+                                          isDemocrat ? 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' :
+                                          'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)';
                 
                 return React.createElement('div', {
                   key: candidate.id,
-                  className: 'relative bg-gradient-to-br rounded-xl p-4 text-white transform hover:scale-105 transition-transform duration-200 ' + gradientClass,
+                  className: 'relative bg-gradient-to-br rounded-xl p-4 text-white transform hover:scale-105 transition-transform duration-200 h-64 flex flex-col justify-between ' + gradientClass,
                   style: {
-                    background: 'linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,193,7,0.1) 100%), ' + 
-                               (index === 0 ? 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' :
-                                index === 1 ? 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)' :
-                                'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)'),
+                    background: 'linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,193,7,0.1) 100%), ' + gradientBackground,
                     border: '3px solid #ffd700',
-                    boxShadow: '0 0 30px rgba(255,215,0,0.3)'
+                    boxShadow: '0 0 30px rgba(255,215,0,0.3)',
+                    minHeight: '256px'
                   }
                 },
                   React.createElement('div', {
@@ -223,7 +230,10 @@ function HomePage() {
                     React.createElement('div', { className: 'w-20 h-20 rounded-full mx-auto mb-3 border-3 border-white bg-gray-300 flex items-center justify-center text-lg font-bold text-gray-600' },
                       candidate.name.split(' ').map(n => n[0]).join('').toUpperCase()
                     ),
-                    React.createElement('h3', { className: 'text-xl font-bold mb-1' }, candidate.name),
+                    React.createElement('h3', { 
+                      className: 'text-xl font-bold mb-1 break-words leading-tight',
+                      style: { wordBreak: 'break-word', hyphens: 'auto' }
+                    }, candidate.name),
                     React.createElement('p', { className: 'mb-3 text-sm ' + textColorClass },
                       candidate.party + ' • #' + (index + 1) + ' Overall'
                     ),
@@ -255,22 +265,35 @@ function HomePage() {
           sortedCandidates.length > 3 && React.createElement('div', {},
             React.createElement('h2', { className: 'text-3xl font-bold mb-8 text-gray-900' }, 'All Candidates on Stage'),
             React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4' },
-              sortedCandidates.slice(3).map((candidate, index) =>
-                React.createElement('div', {
+              sortedCandidates.slice(3).map((candidate, index) => {
+                // Party-based color coding for remaining candidates
+                const isRepublican = candidate.party && candidate.party.toLowerCase().includes('republican');
+                const isDemocrat = candidate.party && candidate.party.toLowerCase().includes('democrat');
+                
+                const partyColor = isRepublican ? 'text-red-600' : isDemocrat ? 'text-blue-600' : 'text-purple-600';
+                const badgeColor = isRepublican ? 'bg-red-500' : isDemocrat ? 'bg-blue-500' : 'bg-purple-500';
+                
+                return React.createElement('div', {
                   key: candidate.id,
-                  className: 'bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4'
+                  className: 'bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4 h-72 flex flex-col',
+                  style: { minHeight: '288px' }
                 },
-                  React.createElement('div', { className: 'text-center' },
-                    React.createElement('div', { className: 'relative' },
-                      React.createElement('div', { className: 'w-16 h-16 rounded-full mx-auto mb-3 bg-gray-300 flex items-center justify-center text-lg font-bold text-gray-600' },
-                        candidate.name.split(' ').map(n => n[0]).join('').toUpperCase()
+                  React.createElement('div', { className: 'text-center flex-1 flex flex-col justify-between' },
+                    React.createElement('div', {},
+                      React.createElement('div', { className: 'relative' },
+                        React.createElement('div', { className: 'w-16 h-16 rounded-full mx-auto mb-3 bg-gray-300 flex items-center justify-center text-lg font-bold text-gray-600' },
+                          candidate.name.split(' ').map(n => n[0]).join('').toUpperCase()
+                        ),
+                        React.createElement('span', { className: 'absolute -top-2 -right-2 text-white text-xs font-bold px-2 py-1 rounded-full ' + badgeColor },
+                          '#' + (index + 4)
+                        )
                       ),
-                      React.createElement('span', { className: 'absolute -top-2 -right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full' },
-                        '#' + (index + 4)
-                      )
+                      React.createElement('h3', { 
+                        className: 'font-bold text-lg mb-1 break-words leading-tight',
+                        style: { wordBreak: 'break-word', hyphens: 'auto' }
+                      }, candidate.name),
+                      React.createElement('p', { className: partyColor + ' text-sm mb-3' }, candidate.party)
                     ),
-                    React.createElement('h3', { className: 'font-bold text-lg mb-1' }, candidate.name),
-                    React.createElement('p', { className: 'text-blue-600 text-sm mb-3' }, candidate.party),
                     React.createElement('div', { className: 'grid grid-cols-2 gap-2 mb-3' },
                       React.createElement('div', { className: 'bg-blue-50 rounded p-2' },
                         React.createElement('div', { className: 'font-bold text-sm' },
@@ -291,8 +314,8 @@ function HomePage() {
                       React.createElement('button', { className: 'flex-1 border border-gray-300 py-2 px-3 rounded text-sm hover:bg-gray-50' }, 'Details')
                     )
                   )
-                )
-              )
+                );
+              })
             )
           )
         ),
