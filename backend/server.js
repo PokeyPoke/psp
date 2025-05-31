@@ -36,6 +36,7 @@ app.use(helmet({
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
       imgSrc: ["'self'", "data:", "https:"],
       scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.tailwindcss.com"],
+      scriptSrcAttr: ["'unsafe-inline'"],
       connectSrc: ["'self'", "https://api.newsapi.org", "https://trends.google.com"]
     }
   }

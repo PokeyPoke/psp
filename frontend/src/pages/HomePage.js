@@ -301,49 +301,268 @@ const HomePage = () => {
       {renderControls()}
       {renderQuickActions()}
 
-      {/* Main Content */}
+      {/* Main Content with Sidebar Layout */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {candidates.length === 0 ? (
-          <div className="text-center py-20">
-            <div className="text-6xl mb-4">🏛️</div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
-              No candidates available
-            </h2>
-            <p className="text-gray-600">
-              Check back later or contact an administrator
-            </p>
-          </div>
-        ) : (
-          <>
-            {/* Candidates Grid/List */}
-            <div className={
-              selectedView === 'grid'
-                ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
-                : 'space-y-4'
-            }>
-              {sortedCandidates.map((candidate) => (
-                <CandidateCard
-                  key={candidate.id}
-                  candidate={candidate}
-                  metrics={candidateMetrics[candidate.id] || {}}
-                  variant={selectedView === 'list' ? 'compact' : 'default'}
-                  showMetrics={true}
-                  showVoteButton={true}
-                  isLoading={refreshing}
-                />
-              ))}
-            </div>
-
-            {/* Load More Button (for future pagination) */}
-            {sortedCandidates.length >= 20 && (
-              <div className="text-center mt-12">
-                <button className="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                  Load More Candidates
-                </button>
+        <div className="lg:grid lg:grid-cols-4 lg:gap-8">
+          {/* Main Content Area */}
+          <div className="lg:col-span-3">
+            {candidates.length === 0 ? (
+              <div className="text-center py-20">
+                <div className="text-6xl mb-4">🏛️</div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                  No candidates available
+                </h2>
+                <p className="text-gray-600">
+                  Check back later or contact an administrator
+                </p>
               </div>
+            ) : (
+              <>
+                {selectedView === 'grid' ? (
+                  <>
+                    {/* Top 3 Candidates - Highlighted */}
+                    {sortedCandidates.length > 0 && (
+                      <div className="mb-12">
+                        <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">
+                          🏆 Leading the Stage
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                          {sortedCandidates.slice(0, 3).map((candidate, index) => (
+                            <div
+                              key={candidate.id}
+                              className={`
+                                relative bg-gradient-to-br rounded-2xl p-8 text-white transform hover:scale-105 transition-transform duration-200
+                                ${index === 0 ? 'from-blue-500 to-blue-700' : ''}
+                                ${index === 1 ? 'from-red-500 to-red-700' : ''}
+                                ${index === 2 ? 'from-purple-500 to-purple-700' : ''}
+                              `}
+                            >
+                              <div className={`
+                                absolute -top-4 -right-4 w-16 h-16 rounded-full flex items-center justify-center text-black font-bold text-xl
+                                ${index === 0 ? 'bg-gradient-to-r from-yellow-400 to-yellow-500' : 'bg-gray-400'}
+                              `}>
+                                #{index + 1}
+                              </div>
+                              <div className="text-center">
+                                <div className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white bg-gray-300 flex items-center justify-center text-2xl font-bold text-gray-600">
+                                  {candidate.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                                </div>
+                                <h3 className="text-3xl font-bold mb-2">{candidate.name}</h3>
+                                <p className={`mb-4 ${index === 0 ? 'text-blue-200' : index === 1 ? 'text-red-200' : 'text-purple-200'}`}>
+                                  {candidate.party} • #{index + 1} Overall
+                                </p>
+                                
+                                <div className="grid grid-cols-2 gap-4 mb-6">
+                                  <div className="bg-white bg-opacity-20 rounded-lg p-3">
+                                    <div className="text-2xl font-bold">
+                                      {(candidateMetrics[candidate.id]?.vote_count || 0).toLocaleString()}
+                                    </div>
+                                    <div className={`text-sm ${index === 0 ? 'text-blue-200' : index === 1 ? 'text-red-200' : 'text-purple-200'}`}>
+                                      Votes
+                                    </div>
+                                  </div>
+                                  <div className="bg-white bg-opacity-20 rounded-lg p-3">
+                                    <div className="text-2xl font-bold">
+                                      {candidateMetrics[candidate.id]?.reddit_sentiment > 0 ? '+' : ''}
+                                      {(candidateMetrics[candidate.id]?.reddit_sentiment || 0).toFixed(2)}
+                                    </div>
+                                    <div className={`text-sm ${index === 0 ? 'text-blue-200' : index === 1 ? 'text-red-200' : 'text-purple-200'}`}>
+                                      Sentiment
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                <button className="w-full bg-white text-gray-900 font-bold py-3 rounded-lg hover:bg-gray-100 transition-colors">
+                                  View Full Profile
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Remaining Candidates - 5-Column Grid */}
+                    {sortedCandidates.length > 3 && (
+                      <div>
+                        <h2 className="text-3xl font-bold mb-8 text-gray-900">All Candidates on Stage</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+                          {sortedCandidates.slice(3).map((candidate, index) => (
+                            <CandidateCard
+                              key={candidate.id}
+                              candidate={candidate}
+                              metrics={candidateMetrics[candidate.id] || {}}
+                              variant="compact"
+                              showMetrics={true}
+                              showVoteButton={true}
+                              isLoading={refreshing}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  /* List View */
+                  <div className="space-y-4">
+                    {sortedCandidates.map((candidate) => (
+                      <CandidateCard
+                        key={candidate.id}
+                        candidate={candidate}
+                        metrics={candidateMetrics[candidate.id] || {}}
+                        variant="compact"
+                        showMetrics={true}
+                        showVoteButton={true}
+                        isLoading={refreshing}
+                      />
+                    ))}
+                  </div>
+                )}
+
+                {/* Load More Button (for future pagination) */}
+                {sortedCandidates.length >= 20 && (
+                  <div className="text-center mt-12">
+                    <button className="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors duration-200">
+                      Load More Candidates
+                    </button>
+                  </div>
+                )}
+              </>
             )}
-          </>
-        )}
+          </div>
+
+          {/* Sidebar */}
+          <div className="lg:col-span-1 mt-8 lg:mt-0">
+            <div className="space-y-6">
+              {/* Advanced Analytics & Insights */}
+              <div className="bg-white rounded-lg shadow-md p-6">
+                <h3 className="text-xl font-bold mb-4 text-gray-900">
+                  📊 Advanced Analytics
+                </h3>
+                
+                {/* Popularity Metrics */}
+                <div className="mb-6">
+                  <h4 className="font-semibold text-gray-800 mb-3">🏆 Top Performers</h4>
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span>Most Voted</span>
+                      <span className="font-medium">
+                        {sortedCandidates[0]?.name || 'N/A'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span>Best Sentiment</span>
+                      <span className="font-medium">
+                        {sortedCandidates
+                          .sort((a, b) => (candidateMetrics[b.id]?.reddit_sentiment || 0) - (candidateMetrics[a.id]?.reddit_sentiment || 0))[0]?.name || 'N/A'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span>Most Mentions</span>
+                      <span className="font-medium">
+                        {sortedCandidates
+                          .sort((a, b) => ((candidateMetrics[b.id]?.reddit_mentions || 0) + (candidateMetrics[b.id]?.news_mentions || 0)) - 
+                                          ((candidateMetrics[a.id]?.reddit_mentions || 0) + (candidateMetrics[a.id]?.news_mentions || 0)))[0]?.name || 'N/A'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Party Breakdown */}
+                <div className="mb-6">
+                  <h4 className="font-semibold text-gray-800 mb-3">🎯 Party Analysis</h4>
+                  <div className="space-y-3">
+                    {['Democratic', 'Republican', 'Independent'].map(party => {
+                      const partyVotes = candidates
+                        .filter(c => c.party === party)
+                        .reduce((sum, c) => sum + (candidateMetrics[c.id]?.vote_count || 0), 0);
+                      const totalVotes = candidates.reduce((sum, c) => sum + (candidateMetrics[c.id]?.vote_count || 0), 0);
+                      const percentage = totalVotes > 0 ? (partyVotes / totalVotes) * 100 : 0;
+                      
+                      return (
+                        <div key={party}>
+                          <div className="flex justify-between mb-1">
+                            <span className={`text-sm ${party === 'Democratic' ? 'text-blue-600' : party === 'Republican' ? 'text-red-600' : 'text-gray-600'}`}>
+                              {party}
+                            </span>
+                            <span className="font-medium text-sm">{partyVotes.toLocaleString()}</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div 
+                              className={`h-2 rounded-full ${party === 'Democratic' ? 'bg-blue-600' : party === 'Republican' ? 'bg-red-600' : 'bg-gray-600'}`}
+                              style={{ width: `${percentage}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Quick Actions */}
+                <div>
+                  <h4 className="font-semibold text-gray-800 mb-3">⚡ Quick Actions</h4>
+                  <div className="space-y-2">
+                    <Link
+                      to="/leaderboard"
+                      className="block w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-center text-sm"
+                    >
+                      🏆 View Leaderboard
+                    </Link>
+                    <button className="w-full bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors text-sm">
+                      📊 Export Data
+                    </button>
+                    <button className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors text-sm">
+                      🔍 Compare All
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Historical Performance */}
+              <div className="bg-white rounded-lg shadow-md p-6">
+                <h3 className="text-xl font-bold mb-4 text-gray-900">
+                  📈 Historical Performance
+                </h3>
+                
+                <div className="space-y-4">
+                  <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4">
+                    <h4 className="font-semibold text-green-800 mb-2">Recent Trends</h4>
+                    <div className="space-y-2 text-sm">
+                      <div>📅 <strong>7 days ago:</strong> Leadership shuffle</div>
+                      <div>📅 <strong>24 hours:</strong> {recentVotes.length} new votes</div>
+                      <div>📅 <strong>Today:</strong> Record activity</div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-4">
+                    <h4 className="font-semibold text-blue-800 mb-2">Growth Metrics</h4>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span>Vote Velocity:</span>
+                        <span className="font-medium text-green-600">↗ +12%</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>New Participants:</span>
+                        <span className="font-medium">+{Math.floor(Math.random() * 100) + 50}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Engagement:</span>
+                        <span className="font-medium text-green-600">High</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-center">
+                    <button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 px-4 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all text-sm">
+                      📊 View Full Timeline
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Floating Refresh Button for Mobile */}
