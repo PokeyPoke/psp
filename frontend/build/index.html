@@ -4,40 +4,205 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Political Sentiment Tracker</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .loading {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 1rem;
+        }
+        
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        .animate-spin {
-            animation: spin 1s linear infinite;
+        
+        .candidates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
+        
+        .candidate-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .candidate-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-4px);
+        }
+        
+        .candidate-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .candidate-photo {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .candidate-info h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+        
+        .candidate-party {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        .candidate-bio {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .metric {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.75rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .metric-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .metric-value {
+            font-size: 0.85rem;
+        }
+        
+        .vote-button {
+            width: 100%;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .vote-button:hover {
+            background: #2563eb;
+        }
+        
+        .vote-button:disabled {
+            background: #6b7280;
+            cursor: not-allowed;
+        }
+        
+        .footer-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .hidden { display: none; }
+        
+        .democratic { border-left: 4px solid #3b82f6; }
+        .republican { border-left: 4px solid #ef4444; }
+        .independent { border-left: 4px solid #22c55e; }
     </style>
 </head>
-<body class="bg-gradient-to-br from-blue-600 via-purple-600 to-purple-800 min-h-screen">
-    <div id="app" class="container mx-auto px-4 py-8">
-        <header class="text-center mb-8">
-            <h1 class="text-4xl font-bold text-white mb-2">📊 Political Sentiment Tracker</h1>
-            <p class="text-blue-100">Real-time sentiment analysis across social media and news</p>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">📊 Political Sentiment Tracker</h1>
+            <p class="subtitle">Real-time sentiment analysis across social media and news</p>
         </header>
 
-        <div id="loading" class="text-center text-white">
-            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-white mb-4"></div>
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
             <p>Loading candidates...</p>
         </div>
 
         <div id="content" class="hidden">
-            <div id="candidates" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"></div>
+            <div id="candidates" class="candidates-grid"></div>
             
-            <div class="bg-white/10 backdrop-blur-lg rounded-lg p-6">
-                <h2 class="text-2xl font-bold text-white mb-4">Vote for Your Candidate</h2>
-                <p class="text-blue-100">Click on any candidate card above to vote!</p>
+            <div class="footer-card">
+                <h2 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Vote for Your Candidate</h2>
+                <p style="opacity: 0.9;">Click on any candidate card above to vote! Your vote helps track public sentiment.</p>
             </div>
         </div>
     </div>
 
     <script>
-        // Simple frontend JavaScript
         let candidates = [];
         
         async function loadCandidates() {
@@ -53,53 +218,74 @@
             }
         }
 
+        function getPartyClass(party) {
+            if (party === 'Democratic') return 'democratic';
+            if (party === 'Republican') return 'republican';
+            if (party === 'Independent') return 'independent';
+            return '';
+        }
+
+        function getInitials(name) {
+            return name.split(' ').map(n => n[0]).join('');
+        }
+
         function renderCandidates() {
             const container = document.getElementById('candidates');
             container.innerHTML = candidates.map(candidate => `
-                <div class="bg-white/10 backdrop-blur-lg rounded-lg p-6 text-white hover:bg-white/20 transition-all cursor-pointer" 
-                     onclick="voteForCandidate(${candidate.id})">
-                    <div class="flex items-center mb-4">
-                        <img src="${candidate.photo_url}" alt="${candidate.name}" class="w-16 h-16 rounded-full mr-4">
-                        <div>
-                            <h3 class="text-xl font-bold">${candidate.name}</h3>
-                            <p class="text-blue-200">${candidate.party}</p>
+                <div class="candidate-card ${getPartyClass(candidate.party)}" data-id="${candidate.id}">
+                    <div class="candidate-header">
+                        <div class="candidate-photo">
+                            ${getInitials(candidate.name)}
+                        </div>
+                        <div class="candidate-info">
+                            <h3>${candidate.name}</h3>
+                            <div class="candidate-party">${candidate.party}</div>
                         </div>
                     </div>
-                    <p class="text-sm text-blue-100 mb-4">${candidate.bio}</p>
+                    <p class="candidate-bio">${candidate.bio}</p>
                     
                     ${candidate.latest_metrics ? `
-                    <div class="grid grid-cols-2 gap-2 text-xs">
-                        <div class="bg-black/20 rounded p-2">
-                            <div class="font-semibold">Reddit</div>
-                            <div>${candidate.latest_metrics.reddit_mentions || 0} mentions</div>
+                    <div class="metrics-grid">
+                        <div class="metric">
+                            <div class="metric-label">Reddit</div>
+                            <div class="metric-value">${candidate.latest_metrics.reddit_mentions || 0} mentions</div>
                         </div>
-                        <div class="bg-black/20 rounded p-2">
-                            <div class="font-semibold">News</div>
-                            <div>${candidate.latest_metrics.news_mentions || 0} mentions</div>
+                        <div class="metric">
+                            <div class="metric-label">News</div>
+                            <div class="metric-value">${candidate.latest_metrics.news_mentions || 0} mentions</div>
                         </div>
-                        <div class="bg-black/20 rounded p-2">
-                            <div class="font-semibold">Trends</div>
-                            <div>${candidate.latest_metrics.google_trends_score || 0}/100</div>
+                        <div class="metric">
+                            <div class="metric-label">Trends</div>
+                            <div class="metric-value">${candidate.latest_metrics.google_trends_score || 0}/100</div>
                         </div>
-                        <div class="bg-black/20 rounded p-2">
-                            <div class="font-semibold">Votes</div>
-                            <div>${candidate.vote_count || 0}</div>
+                        <div class="metric">
+                            <div class="metric-label">Votes</div>
+                            <div class="metric-value">${candidate.vote_count || 0}</div>
                         </div>
                     </div>
                     ` : ''}
                     
-                    <div class="mt-4 text-center">
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded font-semibold">
-                            Vote for ${candidate.name}
-                        </button>
-                    </div>
+                    <button class="vote-button">Vote for ${candidate.name}</button>
                 </div>
             `).join('');
+
+            // Add event listeners to candidate cards
+            document.querySelectorAll('.candidate-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const candidateId = this.getAttribute('data-id');
+                    voteForCandidate(candidateId);
+                });
+            });
         }
 
         async function voteForCandidate(candidateId) {
             try {
-                const sessionId = 'user-' + Date.now();
+                const button = document.querySelector(`[data-id="${candidateId}"] .vote-button`);
+                const originalText = button.textContent;
+                button.disabled = true;
+                button.textContent = 'Voting...';
+                
+                const sessionId = 'user-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
                 const response = await fetch(`/api/votes/${candidateId}`, {
                     method: 'POST',
                     headers: {
@@ -113,19 +299,32 @@
                 });
                 
                 if (response.ok) {
-                    alert('Vote recorded successfully!');
-                    loadCandidates(); // Refresh to show updated vote count
+                    button.textContent = 'Vote Recorded!';
+                    button.style.background = '#22c55e';
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.background = '';
+                        button.disabled = false;
+                        loadCandidates(); // Refresh to show updated vote count
+                    }, 2000);
                 } else {
-                    alert('Error recording vote. Please try again.');
+                    throw new Error('Vote failed');
                 }
             } catch (error) {
                 console.error('Error voting:', error);
-                alert('Error recording vote. Please try again.');
+                const button = document.querySelector(`[data-id="${candidateId}"] .vote-button`);
+                button.textContent = 'Error - Try Again';
+                button.style.background = '#ef4444';
+                setTimeout(() => {
+                    button.textContent = `Vote for ${candidates.find(c => c.id == candidateId).name}`;
+                    button.style.background = '';
+                    button.disabled = false;
+                }, 2000);
             }
         }
 
         // Load candidates when page loads
-        loadCandidates();
+        document.addEventListener('DOMContentLoaded', loadCandidates);
     </script>
 </body>
 </html>
