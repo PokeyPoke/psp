@@ -14,6 +14,10 @@ const themes = {
   crimsonPower: {
     name: 'Crimson Power Fury', 
     className: 'theme-crimson-power'
+  },
+  originalStage: {
+    name: 'Original PoliticalStage',
+    className: 'theme-original-stage'
   }
 };
 
@@ -104,6 +108,8 @@ function HomePage() {
       setCurrentTheme('fireOrange');
     } else if (newClickCount === 2) {
       setCurrentTheme('crimsonPower');
+    } else if (newClickCount === 3) {
+      setCurrentTheme('originalStage');
     } else {
       setCurrentTheme('modern');
       setEasterEggClicks(0);
@@ -707,11 +713,211 @@ function HomePage() {
             onClick: handleEasterEggClick,
             title: 'π'
           }, 'π'),
-          ' to return to sanity!'
+          ' for more themes!'
         )
       )
     )
   );
+
+  // Original PoliticalStage Theme
+  if (currentTheme === 'originalStage') {
+    return React.createElement('div', { className: 'min-h-screen bg-gray-50' },
+      // Original Header - Exact Recreation
+      React.createElement('header', { 
+        className: 'bg-gradient-to-r from-blue-800 to-purple-700 text-white relative overflow-hidden',
+        style: { background: 'linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%)' }
+      },
+        React.createElement('div', { className: 'absolute inset-0 bg-black opacity-20' }),
+        React.createElement('div', { className: 'absolute inset-0 bg-gradient-to-r from-transparent via-yellow-400 to-transparent opacity-10 transform -skew-y-1' }),
+        React.createElement('div', { className: 'relative max-w-7xl mx-auto px-4 py-10' },
+          React.createElement('div', { className: 'text-center' },
+            React.createElement('h1', { 
+              className: 'text-5xl font-bold mb-3 tracking-tight bg-gradient-to-r from-white to-yellow-200 bg-clip-text text-transparent' 
+            }, 
+              'Political',
+              React.createElement('span', { className: 'text-yellow-300' }, 'Stage')
+            ),
+            React.createElement('p', { className: 'text-lg mb-6 text-blue-100' }, '🎭 Where Politics Takes Center Stage'),
+            
+            // Dynamic 24-Hour Achievement Stats (Original Style)
+            React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto' },
+              React.createElement('div', { className: 'bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-3 relative border border-white border-opacity-20' },
+                React.createElement('div', { 
+                  className: 'absolute -top-1 -right-1 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse',
+                  style: { background: 'linear-gradient(45deg, #ef4444, #dc2626)', animation: 'pulse 2s infinite' }
+                }, '🔥'),
+                React.createElement('div', { className: 'text-2xl font-bold text-white' }, '+47.2K'),
+                React.createElement('div', { className: 'text-sm text-gray-200' }, 'Most Votes in 24h'),
+                React.createElement('div', { className: 'text-xs text-yellow-300 mt-1' }, '🏆 ' + (sortedCandidates[0]?.name || 'Joe Biden'))
+              ),
+              
+              React.createElement('div', { className: 'bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-3 relative border border-white border-opacity-20' },
+                React.createElement('div', { 
+                  className: 'absolute -top-1 -right-1 text-white text-xs font-bold px-2 py-1 rounded-full',
+                  style: { background: 'linear-gradient(45deg, #10b981, #059669)' }
+                }, '📈'),
+                React.createElement('div', { className: 'text-2xl font-bold text-white' }, '+127%'),
+                React.createElement('div', { className: 'text-sm text-gray-200' }, 'Biggest Rank Jump'),
+                React.createElement('div', { className: 'text-xs text-yellow-300 mt-1' }, '🚀 Ron DeSantis')
+              ),
+              
+              React.createElement('div', { className: 'bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-3 relative border border-white border-opacity-20' },
+                React.createElement('div', { 
+                  className: 'absolute -top-1 -right-1 text-white text-xs font-bold px-2 py-1 rounded-full',
+                  style: { background: 'linear-gradient(45deg, #3b82f6, #1d4ed8)' }
+                }, '📍'),
+                React.createElement('div', { className: 'text-2xl font-bold text-white' }, '8.9K'),
+                React.createElement('div', { className: 'text-sm text-gray-200' }, 'Top in Texas Today'),
+                React.createElement('div', { className: 'text-xs text-yellow-300 mt-1' }, '🤠 Donald Trump')
+              ),
+              
+              React.createElement('div', { className: 'bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-3 relative border border-white border-opacity-20' },
+                React.createElement('div', { 
+                  className: 'absolute -top-1 -right-1 bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-full' 
+                }, '📱'),
+                React.createElement('div', { className: 'text-2xl font-bold text-white' }, '89.3K'),
+                React.createElement('div', { className: 'text-sm text-gray-200' }, 'Social Mentions/24h'),
+                React.createElement('div', { className: 'text-xs text-yellow-300 mt-1' }, '📲 Nikki Haley')
+              )
+            )
+          )
+        )
+      ),
+
+      // Main Content - Original Style
+      React.createElement('div', { className: 'max-w-7xl mx-auto px-4 py-8' },
+        React.createElement('div', { className: 'grid grid-cols-1 lg:grid-cols-4 gap-8' },
+          // Main Content
+          React.createElement('div', { className: 'lg:col-span-3' },
+            React.createElement('div', { className: 'bg-white rounded-lg shadow-md p-6 mb-6' },
+              React.createElement('h2', { className: 'text-2xl font-bold mb-6 text-gray-900' }, '🏆 Current Ranking - Top Candidates'),
+              
+              React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-3 gap-6' },
+                ...topThree.map((candidate, index) => {
+                  const partyColor = getPartyColor(candidate.party);
+                  
+                  return React.createElement('div', { 
+                    key: candidate.id,
+                    className: index === 0 ? 'leader-highlight bg-white border-4 border-yellow-400 rounded-lg p-4 relative' : 
+                              'bg-white border border-gray-200 rounded-lg p-4 relative hover:shadow-lg transition-shadow'
+                  },
+                    index === 0 && React.createElement('div', { 
+                      className: 'absolute -top-2 -right-2 w-12 h-12 rank-crown rounded-full flex items-center justify-center text-white font-bold text-lg' 
+                    }, '👑'),
+                    
+                    React.createElement('div', { className: 'flex items-center justify-between mb-4' },
+                      React.createElement('div', { className: `text-3xl font-bold ${partyColor === 'red' ? 'text-red-600' : partyColor === 'blue' ? 'text-blue-600' : 'text-purple-600'}` }, 
+                        '#' + (index + 1)
+                      ),
+                      React.createElement('div', { className: `px-3 py-1 rounded-full text-xs font-bold ${partyColor === 'red' ? 'bg-red-100 text-red-800' : partyColor === 'blue' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'}` },
+                        candidate.party || 'Independent'
+                      )
+                    ),
+                    React.createElement('h3', { className: 'text-xl font-bold mb-3 text-gray-900' }, candidate.name),
+                    React.createElement('div', { className: 'grid grid-cols-2 gap-3 mb-4' },
+                      React.createElement('div', { className: 'bg-blue-50 rounded p-2' },
+                        React.createElement('div', { className: 'font-bold text-sm text-blue-600' },
+                          (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].vote_count || 0).toLocaleString()
+                        ),
+                        React.createElement('div', { className: 'text-xs text-gray-600' }, 'Votes')
+                      ),
+                      React.createElement('div', { className: 'bg-green-50 rounded p-2' },
+                        React.createElement('div', { className: 'font-bold text-sm text-green-600' },
+                          (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].reddit_sentiment > 0 ? '+' : '') +
+                          (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].reddit_sentiment || 0).toFixed(2)
+                        ),
+                        React.createElement('div', { className: 'text-xs text-gray-600' }, 'Sentiment')
+                      )
+                    ),
+                    React.createElement('div', { className: 'flex space-x-2' },
+                      React.createElement('button', { className: 'flex-1 bg-blue-600 text-white py-2 px-3 rounded text-sm hover:bg-blue-700' }, 'Vote'),
+                      React.createElement('button', { className: 'flex-1 border border-gray-300 py-2 px-3 rounded text-sm hover:bg-gray-50' }, 'Details')
+                    )
+                  );
+                })
+              )
+            )
+          ),
+
+          // Sidebar - Original with Emojis
+          React.createElement('div', { className: 'lg:col-span-1 mt-8 lg:mt-0' },
+            React.createElement('div', { className: 'space-y-6' },
+              // Advanced Analytics & Insights
+              React.createElement('div', { className: 'bg-white rounded-lg shadow-md p-6' },
+                React.createElement('h3', { className: 'text-xl font-bold mb-4 text-gray-900' }, '📊 Advanced Analytics & Insights'),
+                
+                // Geographic Performance
+                React.createElement('div', { className: 'mb-6' },
+                  React.createElement('h4', { className: 'font-semibold text-gray-800 mb-3' }, '🗺️ Geographic Leaders'),
+                  React.createElement('div', { className: 'space-y-3' },
+                    React.createElement('div', { className: 'flex justify-between items-center' },
+                      React.createElement('span', { className: 'text-sm' }, '🤠 Texas'),
+                      React.createElement('div', { className: 'text-right' },
+                        React.createElement('div', { className: 'font-bold text-sm' }, 'Trump'),
+                        React.createElement('div', { className: 'text-xs text-gray-600' }, '8.9K votes')
+                      )
+                    ),
+                    React.createElement('div', { className: 'flex justify-between items-center' },
+                      React.createElement('span', { className: 'text-sm' }, '🌴 California'),
+                      React.createElement('div', { className: 'text-right' },
+                        React.createElement('div', { className: 'font-bold text-sm' }, 'Biden'),
+                        React.createElement('div', { className: 'text-xs text-gray-600' }, '12.3K votes')
+                      )
+                    ),
+                    React.createElement('div', { className: 'flex justify-between items-center' },
+                      React.createElement('span', { className: 'text-sm' }, '🗽 New York'),
+                      React.createElement('div', { className: 'text-right' },
+                        React.createElement('div', { className: 'font-bold text-sm' }, 'Biden'),
+                        React.createElement('div', { className: 'text-xs text-gray-600' }, '8.7K votes')
+                      )
+                    )
+                  )
+                ),
+                
+                // Live Data Stream
+                React.createElement('div', { className: 'border-t pt-4' },
+                  React.createElement('h4', { className: 'font-semibold text-gray-800 mb-3' }, '📡 Live Data Stream'),
+                  React.createElement('div', { className: 'space-y-2 text-sm' },
+                    React.createElement('div', { className: 'flex items-center justify-between' },
+                      React.createElement('span', {}, 'Vote Velocity:'),
+                      React.createElement('span', { className: 'font-medium text-green-600' }, '+347 votes/min')
+                    ),
+                    React.createElement('div', { className: 'flex items-center justify-between' },
+                      React.createElement('span', {}, 'Active Discussions:'),
+                      React.createElement('span', { className: 'font-medium' }, '18.2K')
+                    )
+                  )
+                ),
+                React.createElement('div', { className: 'text-center' },
+                  React.createElement('button', { className: 'w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 px-4 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all text-sm' },
+                    '📊 View Full Timeline'
+                  )
+                )
+              )
+            )
+          )
+        )
+      ),
+
+      // Original Footer
+      React.createElement('footer', { className: 'bg-gradient-to-r from-blue-800 to-purple-700 text-white py-8' },
+        React.createElement('div', { className: 'max-w-7xl mx-auto px-4 text-center' },
+          React.createElement('div', { className: 'text-lg font-bold mb-4' },
+            '🎭 PoliticalStage - Where Politics Takes Center Stage! 🎭'
+          ),
+          React.createElement('div', { className: 'text-sm text-blue-100' },
+            'Click the ',
+            React.createElement('span', { 
+              className: 'cursor-pointer hover:text-yellow-300 transition-colors select-none text-yellow-300',
+              onClick: handleEasterEggClick,
+              title: 'π'
+            }, 'π'),
+            ' to cycle through all themes!'
+          )
+        )
+      )
+    );
+  }
 }
 
 // Add CSS animations for all themes
@@ -740,6 +946,27 @@ style.textContent = `
   @keyframes powersurge {
     0%, 100% { transform: scale(1) rotateZ(0deg); }
     50% { transform: scale(1.08) rotateZ(2deg); }
+  }
+  
+  // Original theme animations
+  @keyframes shine {
+    0% { box-shadow: 0 0 20px rgba(255,215,0,0.5); }
+    100% { box-shadow: 0 0 30px rgba(255,215,0,0.8); }
+  }
+  
+  .stage-gradient { 
+    background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%); 
+  }
+  
+  .leader-highlight { 
+    background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,193,7,0.1) 100%);
+    border: 3px solid #ffd700;
+    box-shadow: 0 0 30px rgba(255,215,0,0.3);
+  }
+  
+  .rank-crown { 
+    background: linear-gradient(45deg, #ffd700, #ffed4a);
+    animation: shine 2s infinite alternate;
   }
 `;
 document.head.appendChild(style);
