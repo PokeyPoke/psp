@@ -560,7 +560,8 @@ function HomePage() {
   }
 
   // Crimson Power Theme
-  return React.createElement('div', { className: 'min-h-screen bg-red-50' },
+  if (currentTheme === 'crimsonPower') {
+    return React.createElement('div', { className: 'min-h-screen bg-red-50' },
     // Crimson Power Header
     React.createElement('header', { 
       className: 'border-b-4 border-red-900',
@@ -718,6 +719,7 @@ function HomePage() {
       )
     )
   );
+  }
 
   // Original PoliticalStage Theme
   if (currentTheme === 'originalStage') {
