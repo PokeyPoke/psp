@@ -171,117 +171,127 @@ function HomePage() {
 
       // Main Content
       React.createElement('main', { className: 'max-w-7xl mx-auto px-6 py-12' },
-        // Featured Rankings
-        React.createElement('section', { className: 'mb-20' },
-          React.createElement('div', { className: 'text-center mb-12' },
-            React.createElement('h2', { 
-              className: 'text-4xl font-light mb-4',
-              style: { fontFamily: "'Playfair Display', serif" }
-            }, 'Current Leadership'),
-            React.createElement('div', { 
-              className: 'max-w-32 mx-auto',
-              style: { 
-                background: 'linear-gradient(90deg, #000 0%, #666 50%, #000 100%)',
-                height: '1px'
-              }
-            })
-          ),
-          
-          React.createElement('div', { className: 'grid grid-cols-12 gap-6' },
-            ...topThree.map((candidate, index) => {
-              const partyColor = getPartyColor(candidate.party);
-              const colorMap = {
-                blue: 'blue-600',
-                red: 'red-600', 
-                purple: 'purple-600'
-              };
-              const textColor = `text-${colorMap[partyColor]}`;
-              
-              return React.createElement('div', { 
-                key: candidate.id,
-                className: 'col-span-4'
-              },
-                React.createElement('div', { className: 'bg-white border border-gray-300 p-8 h-full' },
-                  React.createElement('div', { className: 'flex items-start justify-between mb-6' },
-                    React.createElement('div', { className: `text-5xl font-light ${textColor}` }, 
-                      String(index + 1).padStart(2, '0')
-                    ),
-                    React.createElement('div', { className: 'text-right text-sm' },
-                      React.createElement('div', { className: 'font-medium' }, candidate.party || 'Independent'),
-                      React.createElement('div', { className: 'text-gray-500' }, 
-                        index === 0 ? 'Leading' : index === 1 ? 'Strong Second' : 'Rising Third'
-                      )
-                    )
-                  ),
-                  
-                  React.createElement('h3', { 
-                    className: 'text-2xl font-medium mb-6',
-                    style: { fontFamily: "'Playfair Display', serif" }
-                  }, candidate.name),
-                  
-                  React.createElement('div', { className: 'grid grid-cols-2 gap-4 text-sm mb-6' },
-                    React.createElement('div', { className: 'text-center p-3 bg-gray-50' },
-                      React.createElement('div', { className: 'text-2xl font-light' },
-                        (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].vote_count || 0).toLocaleString()
-                      ),
-                      React.createElement('div', { className: 'text-gray-600 uppercase tracking-wider' }, 'Votes')
-                    ),
-                    React.createElement('div', { className: 'text-center p-3 bg-gray-50' },
-                      React.createElement('div', { className: 'text-2xl font-light text-green-600' },
-                        (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].reddit_sentiment > 0 ? '+' : '') +
-                        (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].reddit_sentiment || 0).toFixed(2)
-                      ),
-                      React.createElement('div', { className: 'text-gray-600 uppercase tracking-wider' }, 'Sentiment')
-                    )
-                  ),
-                  
-                  React.createElement('div', { className: 'text-xs text-gray-500 uppercase tracking-wider' },
-                    index === 0 ? 'Democratic frontrunner maintains steady lead' :
-                    index === 1 ? 'Republican challenger holds strong position' :
-                    'Rising momentum with 127% growth rate'
-                  )
-                )
-              );
-            })
+        // Top Stats Section - 4 Achievement Cards
+        React.createElement('section', { className: 'mb-16' },
+          React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-4 gap-4' },
+            React.createElement('div', { className: 'bg-white border border-gray-300 p-4 relative' },
+              React.createElement('div', { 
+                className: 'absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full'
+              }, '🔥'),
+              React.createElement('div', { className: 'text-2xl font-light text-gray-900' }, '+47.2K'),
+              React.createElement('div', { className: 'text-sm text-gray-600 font-medium' }, 'Most Votes in 24h'),
+              React.createElement('div', { className: 'text-xs text-gray-500 mt-1' }, '🏆 ' + (sortedCandidates[0]?.name || 'Joe Biden'))
+            ),
+            
+            React.createElement('div', { className: 'bg-white border border-gray-300 p-4 relative' },
+              React.createElement('div', { 
+                className: 'absolute -top-1 -right-1 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded-full'
+              }, '📈'),
+              React.createElement('div', { className: 'text-2xl font-light text-gray-900' }, '+127%'),
+              React.createElement('div', { className: 'text-sm text-gray-600 font-medium' }, 'Biggest Rank Jump'),
+              React.createElement('div', { className: 'text-xs text-gray-500 mt-1' }, '🚀 Ron DeSantis')
+            ),
+            
+            React.createElement('div', { className: 'bg-white border border-gray-300 p-4 relative' },
+              React.createElement('div', { 
+                className: 'absolute -top-1 -right-1 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full'
+              }, '📍'),
+              React.createElement('div', { className: 'text-2xl font-light text-gray-900' }, '8.9K'),
+              React.createElement('div', { className: 'text-sm text-gray-600 font-medium' }, 'Top in Texas Today'),
+              React.createElement('div', { className: 'text-xs text-gray-500 mt-1' }, '🤠 Donald Trump')
+            ),
+            
+            React.createElement('div', { className: 'bg-white border border-gray-300 p-4 relative' },
+              React.createElement('div', { 
+                className: 'absolute -top-1 -right-1 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full'
+              }, '📱'),
+              React.createElement('div', { className: 'text-2xl font-light text-gray-900' }, '89.3K'),
+              React.createElement('div', { className: 'text-sm text-gray-600 font-medium' }, 'Social Mentions/24h'),
+              React.createElement('div', { className: 'text-xs text-gray-500 mt-1' }, '📲 Nikki Haley')
+            )
           )
         ),
 
-        // All Candidates & Analytics
-        React.createElement('div', { className: 'grid grid-cols-12 gap-5' },
-          // Main Candidate Grid
+        // Current Leadership & Analytics Combined
+        React.createElement('div', { className: 'grid grid-cols-12 gap-6 mb-16' },
+          // Current Leadership (reduced to 9 columns)
           React.createElement('div', { className: 'col-span-9' },
-            React.createElement('h2', { 
-              className: 'text-2xl font-light mb-8 border-b border-gray-300 pb-4',
-              style: { fontFamily: "'Playfair Display', serif" }
-            }, 'All Candidates'),
+            React.createElement('div', { className: 'mb-8' },
+              React.createElement('h2', { 
+                className: 'text-3xl font-light mb-4',
+                style: { fontFamily: "'Playfair Display', serif" }
+              }, 'Current Leadership'),
+              React.createElement('div', { 
+                className: 'max-w-24 mb-6',
+                style: { 
+                  background: 'linear-gradient(90deg, #000 0%, #666 50%, #000 100%)',
+                  height: '1px'
+                }
+              })
+            ),
             
-            React.createElement('div', { className: 'grid grid-cols-5 gap-3' },
-              ...remaining.map((candidate, index) => {
+            React.createElement('div', { className: 'grid grid-cols-3 gap-4' },
+              ...topThree.map((candidate, index) => {
+                const partyColor = getPartyColor(candidate.party);
+                const colorMap = {
+                  blue: 'blue-600',
+                  red: 'red-600', 
+                  purple: 'purple-600'
+                };
+                const textColor = `text-${colorMap[partyColor]}`;
+                
                 return React.createElement('div', { 
                   key: candidate.id,
-                  className: 'bg-white border border-gray-300 p-4 text-center'
+                  className: 'col-span-1'
                 },
-                  React.createElement('div', { className: 'text-lg font-medium mb-2' }, 
-                    String(index + 4).padStart(2, '0')
-                  ),
-                  React.createElement('h3', { 
-                    className: 'font-medium text-sm mb-2',
-                    style: { fontFamily: "'Playfair Display', serif" }
-                  }, candidate.name),
-                  React.createElement('div', { 
-                    className: `text-xs mb-2 ${getPartyColor(candidate.party) === 'red' ? 'text-red-600' : 'text-blue-600'}`
-                  }, candidate.party || 'Independent'),
-                  React.createElement('div', { className: 'text-xs' },
-                    (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].vote_count || 0).toLocaleString()
+                  React.createElement('div', { className: 'bg-white border border-gray-300 p-6 h-full' },
+                    React.createElement('div', { className: 'flex items-start justify-between mb-4' },
+                      React.createElement('div', { className: `text-4xl font-light ${textColor}` }, 
+                        String(index + 1).padStart(2, '0')
+                      ),
+                      React.createElement('div', { className: 'text-right text-xs' },
+                        React.createElement('div', { className: 'font-medium' }, candidate.party || 'Independent'),
+                        React.createElement('div', { className: 'text-gray-500' }, 
+                          index === 0 ? 'Leading' : index === 1 ? 'Strong 2nd' : 'Rising 3rd'
+                        )
+                      )
+                    ),
+                    
+                    React.createElement('h3', { 
+                      className: 'text-lg font-medium mb-4',
+                      style: { fontFamily: "'Playfair Display', serif" }
+                    }, candidate.name),
+                    
+                    React.createElement('div', { className: 'grid grid-cols-1 gap-3 text-sm mb-4' },
+                      React.createElement('div', { className: 'text-center p-2 bg-gray-50' },
+                        React.createElement('div', { className: 'text-xl font-light' },
+                          (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].vote_count || 0).toLocaleString()
+                        ),
+                        React.createElement('div', { className: 'text-gray-600 uppercase tracking-wider text-xs' }, 'Votes')
+                      ),
+                      React.createElement('div', { className: 'text-center p-2 bg-gray-50' },
+                        React.createElement('div', { className: 'text-xl font-light text-green-600' },
+                          (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].reddit_sentiment > 0 ? '+' : '') +
+                          (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].reddit_sentiment || 0).toFixed(2)
+                        ),
+                        React.createElement('div', { className: 'text-gray-600 uppercase tracking-wider text-xs' }, 'Sentiment')
+                      )
+                    ),
+                    
+                    React.createElement('div', { className: 'text-xs text-gray-500 uppercase tracking-wider' },
+                      index === 0 ? 'Frontrunner maintains lead' :
+                      index === 1 ? 'Strong position' :
+                      'Rising momentum'
+                    )
                   )
                 );
               })
             )
           ),
 
-          // Analytics Sidebar  
+          // Analytics Sidebar (moved up to match leadership height)
           React.createElement('div', { className: 'col-span-3' },
-            React.createElement('div', { className: 'bg-white border border-gray-300 p-6' },
+            React.createElement('div', { className: 'bg-white border border-gray-300 p-6 h-full' },
               React.createElement('h3', { 
                 className: 'text-lg font-medium mb-6',
                 style: { fontFamily: "'Playfair Display', serif" }
@@ -325,6 +335,37 @@ function HomePage() {
                 )
               )
             )
+          )
+        ),
+
+        // All Candidates Section
+        React.createElement('section', {},
+          React.createElement('h2', { 
+            className: 'text-2xl font-light mb-8 border-b border-gray-300 pb-4',
+            style: { fontFamily: "'Playfair Display', serif" }
+          }, 'All Candidates'),
+          
+          React.createElement('div', { className: 'grid grid-cols-5 gap-3' },
+            ...remaining.map((candidate, index) => {
+              return React.createElement('div', { 
+                key: candidate.id,
+                className: 'bg-white border border-gray-300 p-4 text-center'
+              },
+                React.createElement('div', { className: 'text-lg font-medium mb-2' }, 
+                  String(index + 4).padStart(2, '0')
+                ),
+                React.createElement('h3', { 
+                  className: 'font-medium text-sm mb-2',
+                  style: { fontFamily: "'Playfair Display', serif" }
+                }, candidate.name),
+                React.createElement('div', { 
+                  className: `text-xs mb-2 ${getPartyColor(candidate.party) === 'red' ? 'text-red-600' : 'text-blue-600'}`
+                }, candidate.party || 'Independent'),
+                React.createElement('div', { className: 'text-xs' },
+                  (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].vote_count || 0).toLocaleString()
+                )
+              );
+            })
           )
         )
       ),
