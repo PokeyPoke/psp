@@ -435,7 +435,7 @@ function HomePage() {
               React.createElement('div', { 
                 className: 'bg-white border-4 border-orange-800 p-4 shadow-2xl',
                 style: { 
-                  transform: 'rotate(3deg)',
+                  transform: 'rotate(1deg)',
                   boxShadow: '0 0 50px #ff4500',
                   animation: 'pulseFire 1.5s infinite'
                 }
@@ -506,7 +506,7 @@ function HomePage() {
                     React.createElement('div', { className: 'grid grid-cols-2 gap-3' },
                       React.createElement('div', { 
                         className: `bg-white border-3 border-${color}-600 p-3`,
-                        style: { transform: 'rotate(2deg)' }
+                        style: { transform: 'rotate(1deg)' }
                       },
                         React.createElement('div', { className: `text-3xl font-black text-${color}-600` },
                           (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].vote_count || 0).toLocaleString()
@@ -515,7 +515,7 @@ function HomePage() {
                       ),
                       React.createElement('div', { 
                         className: `bg-white border-3 border-${color}-600 p-3`,
-                        style: { transform: 'rotate(-2deg)' }
+                        style: { transform: 'rotate(-1deg)' }
                       },
                         React.createElement('div', { className: 'text-3xl font-black text-green-600' },
                           (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].reddit_sentiment > 0 ? '+' : '') +
@@ -596,7 +596,7 @@ function HomePage() {
             React.createElement('div', { 
               className: 'bg-white border-4 border-red-900 p-4',
               style: { 
-                transform: 'rotate(3deg)',
+                transform: 'rotate(1deg)',
                 boxShadow: '0 0 35px #b91c1c, 0 0 70px #b91c1c',
                 animation: 'crimsonrage 1.8s infinite'
               }
@@ -667,7 +667,7 @@ function HomePage() {
                   React.createElement('div', { className: 'grid grid-cols-2 gap-3' },
                     React.createElement('div', { 
                       className: `bg-white border-3 border-${color}-700 p-3`,
-                      style: { transform: 'rotate(2deg)' }
+                      style: { transform: 'rotate(1deg)' }
                     },
                       React.createElement('div', { className: `text-3xl font-black text-${color}-600` },
                         (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].vote_count || 0).toLocaleString()
@@ -676,7 +676,7 @@ function HomePage() {
                     ),
                     React.createElement('div', { 
                       className: `bg-white border-3 border-${color}-700 p-3`,
-                      style: { transform: 'rotate(-2deg)' }
+                      style: { transform: 'rotate(-1deg)' }
                     },
                       React.createElement('div', { className: 'text-3xl font-black text-green-600' },
                         (candidateMetrics[candidate.id] && candidateMetrics[candidate.id].reddit_sentiment > 0 ? '+' : '') +
@@ -918,6 +918,9 @@ function HomePage() {
       )
     );
   }
+
+  // If we get here, return the modern theme as fallback
+  return null;
 }
 
 // Add CSS animations for all themes
@@ -925,7 +928,10 @@ const style = document.createElement('style');
 style.textContent = `
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
   
-  body { font-family: 'Inter', sans-serif; }
+  body { 
+    font-family: 'Inter', sans-serif; 
+    overflow-x: hidden;
+  }
   
   @keyframes pulseFire {
     0%, 100% { background-color: #ff4500; }
@@ -934,8 +940,8 @@ style.textContent = `
   
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-2px); }
-    75% { transform: translateX(2px); }
+    25% { transform: translateX(-1px); }
+    75% { transform: translateX(1px); }
   }
   
   @keyframes crimsonrage {
@@ -944,8 +950,8 @@ style.textContent = `
   }
   
   @keyframes powersurge {
-    0%, 100% { transform: scale(1) rotateZ(0deg); }
-    50% { transform: scale(1.08) rotateZ(2deg); }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
   }
   
   // Original theme animations
